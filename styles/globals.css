@@ -9,7 +9,9 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-inter: var(--font-inter);
+  --font-elite : var(--font-elite)
   --font-pretendard: var(--font-pretendard);
+  --font-test : var(--font-test);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,13 +24,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-pretendard), var(--font-inter), sans-serif;
-}
-
-:lang(en) {
-  font-family: var(--font-inter), sans-serif;
-}
-
-:lang(ko) {
-  font-family: var(--font-pretendard), sans-serif;
+  font-family: var(--font-inter), var(--font-pretendard), sans-serif;
 }

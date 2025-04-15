@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { useEffect, useState } from "react";
 import { Inter, Special_Elite } from "next/font/google";
 import LocalFont from "next/font/local";
 import "@/styles/globals.css";
@@ -6,6 +7,13 @@ import "@/styles/globals.css";
 // 영문 폰트
 const getInter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const getElite = Special_Elite({
+  weight: "400",
+  variable: "--font-elite",
   subsets: ["latin"],
   display: "swap",
 });
@@ -47,6 +55,11 @@ const getPretendard = LocalFont({
   variable: "--font-pretendard",
   display: "swap",
 });
+const getTest = LocalFont({
+  src: "../public/fonts/test/test.ttf",
+  variable: "--font-test",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -62,7 +75,7 @@ export default function RootLayout({
     <html lang="ko">
       <head></head>
       <body
-        className={` ${getPretendard.variable} ${getInter.variable}  antialiased `}
+        className={`${getInter.variable} ${getPretendard.variable}   antialiased `}
       >
         {children}
       </body>
