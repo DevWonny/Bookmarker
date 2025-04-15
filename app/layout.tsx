@@ -1,15 +1,51 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Inter, Special_Elite } from "next/font/google";
+import LocalFont from "next/font/local";
+import "@/styles/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// 영문 폰트
+const getInter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// 국문 폰트
+const getPretendard = LocalFont({
+  src: [
+    { path: "../public/fonts/Pretendard/Pretendard-Thin.woff2", weight: "100" },
+    {
+      path: "../public/fonts/Pretendard/Pretendard-ExtraLight.woff2",
+      weight: "200",
+    },
+    {
+      path: "../public/fonts/Pretendard/Pretendard-Light.woff2",
+      weight: "300",
+    },
+    {
+      path: "../public/fonts/Pretendard/Pretendard-Regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "../public/fonts/Pretendard/Pretendard-Medium.woff2",
+      weight: "500",
+    },
+    {
+      path: "../public/fonts/Pretendard/Pretendard-SemiBold.woff2",
+      weight: "600",
+    },
+    { path: "../public/fonts/Pretendard/Pretendard-Bold.woff2", weight: "700" },
+    {
+      path: "../public/fonts/Pretendard/Pretendard-ExtraBold.woff2",
+      weight: "800",
+    },
+    {
+      path: "../public/fonts/Pretendard/Pretendard-Black.woff2",
+      weight: "900",
+    },
+  ],
+  variable: "--font-pretendard",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,9 +59,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
+      <head></head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${getPretendard.variable} ${getInter.variable}  antialiased `}
       >
         {children}
       </body>
