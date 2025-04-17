@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { useEffect, useState } from "react";
 import { Inter, Special_Elite } from "next/font/google";
 import LocalFont from "next/font/local";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 // 영문 폰트
 const getInter = Inter({
