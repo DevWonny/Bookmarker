@@ -1,9 +1,11 @@
+// Component
+import Header from "@/components/common/header";
+
 export default () => {
   return (
     <div>
-      <p>안녕하세요gggg</p>
-      <p>안녕하세요</p>
-      <p>gggg</p>
+      <Header></Header>
+      <div>Main 영역</div>
     </div>
   );
 };
