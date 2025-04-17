@@ -1,2 +1,38 @@
+@import "@/styles/globals.scss";
+
 div.header-container {
+  height: 5rem; // 반응형 구조 잡을경우에는 제거 예정
+  border-bottom: 1px solid $border-color;
+
+  div.left-container {
+    gap: 3.125rem;
+    div.logo {
+      width: 9.375rem;
+      height: 100%;
+      background-color: $point-color;
+      color: $border-color;
+    }
+
+    a.store-location-btn {
+      &:hover {
+        color: $point-color;
+        font-weight: 600;
+      }
+    }
+  }
+
+  div.right-container {
+    padding-right: 3.125rem;
+    div.default-container {
+      gap: 3.125rem;
+
+      button {
+        cursor: pointer;
+        &:hover {
+          color: $point-color;
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }
