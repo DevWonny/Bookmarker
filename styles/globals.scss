@@ -22,9 +22,20 @@
 //   }
 // }
 
+// * Color
+$bg-color : #FFF8F1;
+$border-color : #D6BAA0;
+$point-color : #A47148;
+$text-color : #3E2C1C;
+$assistance-color : #9A897C;
+$warning-color:#D26A5E;
+$warning-border-color:#F3C1BA;
+
 body {
   background: var(--background);
   color: var(--textColor);
   font-family: var(--font-inter), var(--font-pretendard), sans-serif;
-  
+  &*{
+    box-sizing: border-box;
+  }
 }
