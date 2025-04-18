@@ -1,8 +1,14 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 // style
 import "@/styles/components/header.scss";
 
 export default function Header() {
+  // state
+  const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
+
   return (
     <div className="bg-primary header-container w-full flex justify-between items-center">
       {/*  left -> 로고 + 서점 위치 페이지 버튼 + 검색  */}
@@ -13,6 +19,27 @@ export default function Header() {
         <Link href="/" className="store-location-btn text-lg">
           서점 위치
         </Link>
+
+        <div className="search-container flex">
+          <select
+            value={filter}
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
+            className="text-sm"
+          >
+            <option value="all">통합 검색</option>
+            <option value="title">제목</option>
+            <option value="author">저자</option>
+          </select>
+
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="검색어를 입력하세요."
+          />
+        </div>
       </div>
 
       {/* right -> 로그인 + 회원가입 버튼 + 찜목록 버튼 */}
