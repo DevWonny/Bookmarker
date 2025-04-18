@@ -1,2 +1,57 @@
+@import "@/styles/globals.scss";
+
 div.header-container {
+  height: 5rem; // 반응형 구조 잡을경우에는 제거 예정
+  border-bottom: 1px solid $border-color;
+
+  div.left-container {
+    gap: 3.125rem;
+    div.logo {
+      width: 9.375rem;
+      height: 100%;
+      background-color: $point-color;
+      color: $border-color;
+    }
+
+    a.store-location-btn {
+      &:hover {
+        color: $point-color;
+        font-weight: 600;
+      }
+    }
+
+    div.search-container {
+      border: 1px solid $border-color;
+      border-radius: 8px;
+      height: 50px;
+      width: 700px;
+      select {
+        width: 150px;
+        border-right: 1px solid $border-color;
+        text-align: center;
+        padding: 0 10px;
+        outline: unset;
+      }
+      input {
+        width: calc(700px - 150px);
+        outline: unset;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  div.right-container {
+    padding-right: 3.125rem;
+    div.default-container {
+      gap: 3.125rem;
+
+      button {
+        cursor: pointer;
+        &:hover {
+          color: $point-color;
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }
