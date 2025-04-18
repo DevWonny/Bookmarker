@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
-:root {
-  --background : #FFF8F1;
-  --textColor : #3E2C1C;
-}
+// :root {
+//   --background: #fff8f1;
+//   --textColor: #3e2c1c;
+// }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-inter: var(--font-inter);
-  --font-elite : var(--font-elite)
-  --font-pretendard: var(--font-pretendard);
-  --font-test : var(--font-test);
-}
+// @theme inline {
+//   --color-background: var(--background);
+//   --color-foreground: var(--foreground);
+//   // --font-inter: var(--font-inter);
+//   // --font-elite : var(--font-elite)
+//   // --font-pretendard: var(--font-pretendard);
+//   // --font-test : var(--font-test);
+// }
 
 // * Dark Mode
 // @media (prefers-color-scheme: dark) {
@@ -21,21 +21,26 @@
 //     --foreground: #ededed;
 //   }
 // }
+// * Font
+$font-elite: var(--font-elite);
+$font-test: var(--font-test);
+$font-inter: var(--font-inter);
+$font-pretendard: var(--font-pretendard);
 
 // * Color
-$bg-color : #FFF8F1;
-$border-color : #D6BAA0;
-$point-color : #A47148;
-$text-color : #3E2C1C;
-$assistance-color : #9A897C;
-$warning-color:#D26A5E;
-$warning-border-color:#F3C1BA;
+$bg-color: #fff8f1;
+$border-color: #d6baa0;
+$point-color: #a47148;
+$text-color: #3e2c1c;
+$assistance-color: #9a897c;
+$warning-color: #d26a5e;
+$warning-border-color: #f3c1ba;
 
 body {
-  background: var(--background);
-  color: var(--textColor);
-  font-family: var(--font-inter), var(--font-pretendard), sans-serif;
-  &*{
+  background: $bg-color;
+  color: $text-color;
+  &* {
     box-sizing: border-box;
+    font-family: $font-inter, $font-pretendard, sans-serif;
   }
 }
