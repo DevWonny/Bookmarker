@@ -10,4 +10,20 @@ div.main-wrap {
     justify-content: center;
     font-size: 100px;
   }
+
+  div.rank-list-container {
+    margin-top: 1.25rem;
+    gap: 2.5rem;
+    div.btn-container {
+      padding-right: 3.125rem;
+      gap: 1.875rem;
+      button {
+        cursor: pointer;
+        &:hover {
+          color: $point-color;
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }
