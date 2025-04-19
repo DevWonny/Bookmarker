@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Inter, Special_Elite } from "next/font/google";
 import LocalFont from "next/font/local";
 import "@/styles/globals.scss";
+// component
+import Header from "@/components/common/header";
 
 // 영문 폰트
 const getInter = Inter({
@@ -77,6 +79,7 @@ export default function RootLayout({
       <body
         className={`${getInter.variable} ${getPretendard.variable}   antialiased `}
       >
+        <Header />
         {children}
       </body>
     </html>
