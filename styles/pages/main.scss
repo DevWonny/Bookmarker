@@ -21,6 +21,9 @@ div.main-wrap {
         cursor: pointer;
         &:hover {
           color: $point-color;
+        }
+        &.active {
+          color: $point-color;
           font-weight: 600;
         }
       }
