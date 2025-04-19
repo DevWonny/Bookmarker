@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+// component
+import ListItem from "@/components/common/listItem";
 // style
 import "@/styles/pages/main.scss";
 
@@ -15,7 +17,10 @@ export default () => {
           <button className="year-btn">연간</button>
         </div>
 
-        <div className="list-item">Item</div>
+        <div className="list-item-container">
+          <ListItem />
+          <ListItem />
+        </div>
       </div>
     </div>
   );

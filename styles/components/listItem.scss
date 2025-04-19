@@ -1,0 +1,28 @@
+@import "@/styles/globals.scss";
+
+div.item {
+  height: 12.5rem;
+  div.rank {
+    width: 6.25rem;
+  }
+
+  div.thumbnail {
+    width: 12.5rem;
+  }
+
+  div.information {
+    width: calc(100% - 18.75rem);
+  }
+  &:nth-child(odd) {
+    background-color: $border-color;
+    & > div:not(:last-child) {
+      border-right: 1px solid $bg-color;
+    }
+  }
+  &:nth-child(even) {
+    background-color: unset;
+    & > div:not(:last-child) {
+      border-right: 1px solid $border-color;
+    }
+  }
+}
