@@ -1,16 +1,22 @@
 "use client";
 import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 // component
 import ListItem from "@/components/common/listItem";
 // style
 import "@/styles/pages/main.scss";
+// swiper style
+import "swiper/css";
 
 export default () => {
   const [listFilter, setListFilter] = useState("week");
 
   return (
     <div className="main-wrap w-full">
-      <div className="banner-container w-full">Banner Container</div>
+      <Swiper className="banner-container">
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+      </Swiper>
 
       <div className="rank-list-container w-full flex flex-col">
         <div className="btn-container flex justify-end">
