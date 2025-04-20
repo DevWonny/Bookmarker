@@ -1,0 +1,33 @@
+@import "@/styles/globals.scss";
+
+div.main-wrap {
+  div.banner-container {
+    height: 25rem;
+    border-bottom: 1px solid $border-color;
+    // ! Swiper에 Data Binding시에 제거 예정
+    div.swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  div.rank-list-container {
+    margin-top: 1.25rem;
+    gap: 2.5rem;
+    div.btn-container {
+      padding-right: 3.125rem;
+      gap: 1.875rem;
+      button {
+        cursor: pointer;
+        &:hover {
+          color: $point-color;
+        }
+        &.active {
+          color: $point-color;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
