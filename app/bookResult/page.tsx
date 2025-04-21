@@ -11,13 +11,19 @@ export default () => {
   const [isData, setIsData] = useState(false);
 
   return (
-    <div className="book-result-wrap">
+    <div
+      className={`book-result-wrap ${
+        !isData && "flex items-center justify-center h-screen"
+      }`}
+    >
       {isData && <ListItem />}
 
       {!isData && (
-        <div className="warning-box flex flex-col">
+        <div className="warning-box flex flex-col items-center">
           <div className="warning-icon"></div>
-          <p className="warning-text">검색결과 없음</p>
+          <p className="warning-text">
+            {`검색 결과가 없습니다.\n검색어의 철자가 정확한지 다시 한 번 확인해주세요.`}
+          </p>
         </div>
       )}
     </div>
