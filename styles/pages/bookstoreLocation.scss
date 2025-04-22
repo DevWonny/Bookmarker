@@ -1,0 +1,32 @@
+@import "@/styles/globals.scss";
+div.store-location-wrap {
+  padding: 3.125rem;
+  color: $text-color;
+
+  div.address-container {
+    gap: 3.125rem;
+    div.address-button-container {
+      gap: 2.6875rem;
+      height: 2.6875rem;
+      button {
+        width: 7.8125rem;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        cursor: pointer;
+        &:hover {
+          background-color: $point-color;
+          color: $border-color;
+        }
+
+        &.disabled {
+          color: $assistance-color;
+          cursor: unset;
+          &:hover {
+            background-color: unset;
+            color: $assistance-color;
+          }
+        }
+      }
+    }
+  }
+}

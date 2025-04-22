@@ -10,17 +10,30 @@ type AddressType = {
 };
 export default function AddressFilter({ type }: AddressType) {
   const [filterValue, setFilterValue] = useState("");
+  const [showList, setShowList] = useState(false);
+
+  useEffect(() => {
+    if (type) {
+      setFilterValue("도 / 시 선택");
+    } else {
+      setFilterValue("시 / 구 / 군 선택");
+    }
+  }, []);
+
   return (
-    <select
-      className="address-filter-container"
-      value={filterValue}
-      onChange={(e) => setFilterValue(e.target.value)}
-    >
-      {type ? (
-        <option value="first">도 / 시 선택</option>
-      ) : (
-        <option value="second">시 / 구 / 군 선택</option>
+    <div className="address-filter-container">
+      <button
+        type="button"
+        className="filter-button"
+        onClick={() => (showList ? setShowList(false) : setShowList(true))}
+      >
+        {filterValue}
+      </button>
+      {showList && (
+        <ul className="filter-list">
+          <li>추후 생성예정!</li>
+        </ul>
       )}
-    </select>
+    </div>
   );
 }

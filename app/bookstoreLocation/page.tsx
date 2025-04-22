@@ -7,10 +7,19 @@ import "@/styles/pages/bookstoreLocation.scss";
 
 export default () => {
   return (
-    <div className="store-location-wrap flex w-100">
-      <div className="address-container">
+    <div className="store-location-wrap flex w-full">
+      <div className="address-container flex flex-col">
         <AddressFilter type={true}></AddressFilter>
         <AddressFilter type={false}></AddressFilter>
+        <div className="address-button-container flex">
+          {/* //! disabled -> 위 필터 선택 아무것도 안되어 있을 경우 */}
+          <button type="button" className="reset-btn">
+            초기화
+          </button>
+          <button type="button" className="confirm-btn">
+            확인
+          </button>
+        </div>
       </div>
 
       <div className="map-container">Map</div>
