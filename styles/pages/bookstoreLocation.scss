@@ -2,6 +2,7 @@
 div.store-location-wrap {
   padding: 3.125rem;
   color: $text-color;
+  gap: 3.125rem;
 
   div.address-container {
     gap: 3.125rem;
@@ -28,5 +29,11 @@ div.store-location-wrap {
         }
       }
     }
+  }
+
+  div.map-container {
+    width: 30rem;
+    height: 45rem;
+    border: 1px solid $border-color;
   }
 }
