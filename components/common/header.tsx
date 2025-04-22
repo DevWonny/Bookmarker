@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 // style
 import "@/styles/components/header.scss";
 
@@ -9,6 +10,9 @@ export default function Header() {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
 
+  // url path check
+  const pathname = usePathname();
+
   return (
     <div className="bg-primary header-container w-full flex justify-between items-center">
       {/*  left -> 로고 + 서점 위치 페이지 버튼 + 검색  */}
@@ -16,7 +20,12 @@ export default function Header() {
         <div className="logo flex items-center justify-center text-lg cursor-default">
           Logo
         </div>
-        <Link href="/" className="store-location-btn text-lg">
+        <Link
+          href="/"
+          className={`store-location-btn text-lg ${
+            pathname === "/bookstoreLocation" && "active"
+          }`}
+        >
           서점 위치
         </Link>
 

@@ -14,6 +14,7 @@ div.header-container {
     }
 
     a.store-location-btn {
+      &.active,
       &:hover {
         color: $point-color;
         font-weight: 600;
