@@ -1,7 +1,10 @@
+// style
+import "@/styles/components/locationItem.scss";
+
 export default function LocationItem() {
   return (
     <div className="location-item-container flex flex-col">
-      <div className="title-container">
+      <div className="title-container flex items-center">
         <div className="icon"></div>
         <div className="title">우리 집</div>
       </div>
