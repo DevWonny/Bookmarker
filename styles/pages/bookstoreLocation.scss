@@ -36,4 +36,12 @@ div.store-location-wrap {
     height: 45rem;
     border: 1px solid $border-color;
   }
+
+  div.location-list-container {
+    width: fit-content;
+    height: 45rem;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    overflow-y: scroll;
+  }
 }

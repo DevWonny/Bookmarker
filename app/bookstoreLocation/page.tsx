@@ -1,6 +1,7 @@
 // 서점 위치 페이지
 // component
 import AddressFilter from "@/components/bookstoreLocation/addressFilter";
+import LocationItem from "@/components/bookstoreLocation/locationItem";
 
 // style
 import "@/styles/pages/bookstoreLocation.scss";
@@ -24,7 +25,9 @@ export default () => {
 
       <div className="map-container">Map</div>
 
-      <div className="location-list-container">List</div>
+      <div className="location-list-container">
+        <LocationItem></LocationItem>
+      </div>
     </div>
   );
 };
