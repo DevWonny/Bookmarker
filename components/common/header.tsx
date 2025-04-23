@@ -21,7 +21,7 @@ export default function Header() {
           Logo
         </div>
         <Link
-          href="/"
+          href="/bookstoreLocation"
           className={`store-location-btn text-lg ${
             pathname === "/bookstoreLocation" && "active"
           }`}
