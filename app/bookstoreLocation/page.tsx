@@ -8,7 +8,7 @@ import "@/styles/pages/bookstoreLocation.scss";
 
 export default () => {
   return (
-    <div className="store-location-wrap flex w-full">
+    <div className="store-location-wrap flex w-full ">
       <div className="address-container flex flex-col">
         <AddressFilter type={true}></AddressFilter>
         <AddressFilter type={false}></AddressFilter>
@@ -23,7 +23,9 @@ export default () => {
         </div>
       </div>
 
-      <div className="map-container">Map</div>
+      <div className="map-container w-full sm:w-[90%] md:w-[70%] lg:w-[48.28%] h-auto">
+        Map
+      </div>
 
       <div className="location-list-container">
         <LocationItem></LocationItem>
