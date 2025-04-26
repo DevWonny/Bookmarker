@@ -3,6 +3,7 @@
 div.location-item-container {
   gap: 0.5rem;
   padding: 1.25rem;
+  width: 25rem;
   &:not(:last-child) {
     border-bottom: 1px solid $border-color;
   }
@@ -30,5 +31,11 @@ div.location-item-container {
         color: $assistance-color;
       }
     }
+  }
+}
+
+@media (max-width: 80rem) {
+  div.location-item-container {
+    width: 100%;
   }
 }

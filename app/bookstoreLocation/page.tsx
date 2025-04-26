@@ -23,9 +23,7 @@ export default () => {
         </div>
       </div>
 
-      <div className="map-container w-full sm:w-[90%] md:w-[70%] lg:w-[48.28%] h-auto">
-        Map
-      </div>
+      <div className="map-container w-full ">Map</div>
 
       <div className="location-list-container">
         <LocationItem></LocationItem>
