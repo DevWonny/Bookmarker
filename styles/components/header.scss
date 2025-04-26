@@ -6,6 +6,7 @@ div.header-container {
 
   div.left-container {
     gap: 3.125rem;
+    width: 68.75rem;
     div.logo {
       width: 9.375rem;
       height: 100%;
@@ -24,17 +25,19 @@ div.header-container {
     div.search-container {
       border: 1px solid $border-color;
       border-radius: 8px;
-      height: 50px;
-      width: 700px;
+      height: 3.125rem;
+      max-width: 43.75rem;
       select {
-        width: 150px;
+        // width: 150px;
+        width: 9.375rem;
         border-right: 1px solid $border-color;
         text-align: center;
         padding: 0 10px;
         outline: unset;
       }
       input {
-        width: calc(700px - 150px);
+        // width: calc(700px - 150px);
+        width: 34.375rem;
         outline: unset;
         padding: 0 10px;
       }
@@ -52,6 +55,28 @@ div.header-container {
           color: $point-color;
           font-weight: 600;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 80rem) {
+  div.left-container {
+    gap: 1.56rem !important;
+    div.logo {
+      min-width: 11.7%;
+    }
+
+    div.search-container {
+      width: 50% !important;
+
+      select {
+        width: 25% !important;
+        padding: 0 5px !important;
+      }
+
+      input {
+        width: 75% !important;
       }
     }
   }
