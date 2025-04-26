@@ -45,3 +45,28 @@ div.store-location-wrap {
     overflow-y: scroll;
   }
 }
+
+@media (max-width: 80rem) {
+  // * xl size
+  div.store-location-wrap {
+    div.address-container {
+      min-width: 27%;
+      div.address-button-container {
+        gap: 15%;
+        button {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+// *Mobile
+@media (max-width: 40rem) {
+  // * sm size
+  div.store-location-wrap {
+    div.address-container {
+      width: 100%;
+    }
+  }
+}

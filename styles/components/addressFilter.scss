@@ -14,3 +14,17 @@ div.address-filter-container {
     cursor: pointer;
   }
 }
+
+@media (max-width: 80rem) {
+  // table + 노트북
+  div.address-filter-container {
+    width: 100%;
+  }
+}
+
+// * Mobile
+@media (max-width: 40rem) {
+  div.address-filter-container {
+    width: 100%;
+  }
+}
