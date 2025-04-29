@@ -4,10 +4,23 @@
 // style
 import "@/styles/components/listItem.scss";
 
-export default function ListItem() {
+// 좌측 영역 구분 Interface
+type ListType = "rank" | "result" | "wish";
+interface ListItemProps {
+  type: ListType;
+}
+
+export default function ListItem({ type }: ListItemProps) {
   return (
     <div className="item flex flex-row ">
-      <div className="rank h-full flex items-center justify-center">1</div>
+      {type === "rank" && (
+        <div className="rank h-full flex items-center justify-center">1</div>
+      )}
+
+      {type === "wish" && (
+        <div className="wish h-full flex items-center justify-center">Wish</div>
+      )}
+
       <div className="thumbnail h-full flex items-center justify-center">
         Thumbnail
       </div>
