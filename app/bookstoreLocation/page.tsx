@@ -8,7 +8,7 @@ import "@/styles/pages/bookstoreLocation.scss";
 
 export default () => {
   return (
-    <div className="store-location-wrap flex w-full max-sm:flex-col">
+    <div className="store-location-wrap flex w-full max-sm:flex-col justify-between">
       <div className="address-container flex flex-col">
         <AddressFilter type={true}></AddressFilter>
         <AddressFilter type={false}></AddressFilter>
