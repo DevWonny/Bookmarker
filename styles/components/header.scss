@@ -7,11 +7,12 @@ div.header-container {
   div.left-container {
     gap: 3.125rem;
     width: 68.75rem;
-    div.logo {
+    a.logo {
       width: 9.375rem;
       height: 100%;
       background-color: $point-color;
       color: $border-color;
+      cursor: pointer;
     }
 
     a.store-location-btn {
@@ -85,7 +86,7 @@ div.header-container {
 @media (max-width: 64rem) {
   div.left-container {
     gap: 1.56rem !important;
-    div.logo {
+    a.logo {
       min-width: 11.7%;
     }
 

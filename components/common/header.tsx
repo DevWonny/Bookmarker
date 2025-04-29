@@ -17,9 +17,12 @@ export default function Header() {
     <div className="bg-primary header-container flex justify-between items-center w-full">
       {/*  left -> 로고 + 서점 위치 페이지 버튼 + 검색  */}
       <div className="left-container flex h-full items-center">
-        <div className="logo flex items-center justify-center text-lg cursor-default">
+        <Link
+          href="/"
+          className="logo flex items-center justify-center text-lg cursor-default"
+        >
           Logo
-        </div>
+        </Link>
         <Link
           href="/bookstoreLocation"
           className={`store-location-btn text-lg max-xl:text-base max-md:text-sm max-sm:text-xs ${
