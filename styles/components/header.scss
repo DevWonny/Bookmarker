@@ -16,6 +16,7 @@ div.header-container {
     }
 
     a.store-location-btn {
+      min-width: fit-content;
       &.active,
       &:hover {
         color: $point-color;
