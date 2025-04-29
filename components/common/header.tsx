@@ -22,7 +22,7 @@ export default function Header() {
         </div>
         <Link
           href="/bookstoreLocation"
-          className={`store-location-btn text-lg max-xl:text-base max-md:text-sm ${
+          className={`store-location-btn text-lg max-xl:text-base max-md:text-sm max-sm:text-xs ${
             pathname === "/bookstoreLocation" && "active"
           }`}
         >

@@ -50,6 +50,7 @@ div.header-container {
       gap: 3.125rem;
 
       button {
+        min-width: fit-content;
         cursor: pointer;
         &:hover {
           color: $point-color;
@@ -63,12 +64,11 @@ div.header-container {
 @media (max-width: 80rem) {
   div.left-container {
     gap: 1.56rem !important;
-    div.logo {
-      min-width: 11.7%;
-    }
-
+    // div.logo {
+    //   min-width: 11.7%;
+    // }
     div.search-container {
-      width: 50% !important;
+      width: 65% !important;
 
       select {
         width: 25% !important;
@@ -78,6 +78,35 @@ div.header-container {
       input {
         width: 75% !important;
       }
+    }
+  }
+}
+
+@media (max-width: 64rem) {
+  div.left-container {
+    gap: 1.56rem !important;
+    div.logo {
+      min-width: 11.7%;
+    }
+
+    div.search-container {
+      width: 55% !important;
+
+      select {
+        width: 25% !important;
+        padding: 0 5px !important;
+      }
+
+      input {
+        width: 75% !important;
+      }
+    }
+  }
+
+  div.right-container {
+    width: 38.3%;
+    div.default-container {
+      gap: 1.56rem !important;
     }
   }
 }
