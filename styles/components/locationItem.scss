@@ -1,0 +1,41 @@
+@import "@/styles/globals.scss";
+
+div.location-item-container {
+  gap: 0.5rem;
+  padding: 1.25rem;
+  width: 25rem;
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+  }
+
+  div.title-container {
+    gap: 0.625rem;
+    div.icon {
+      width: 30px;
+      height: 37px;
+      background-color: $point-color;
+      border-radius: 50%;
+    }
+    div.title {
+      font-weight: 500;
+    }
+  }
+
+  div.detail-container {
+    padding-left: 40px;
+    gap: 5px;
+    p {
+      font-size: 14px;
+
+      &.phone-number {
+        color: $assistance-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 80rem) {
+  div.location-item-container {
+    width: 100%;
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 // style
 import "@/styles/components/header.scss";
 
@@ -9,14 +10,25 @@ export default function Header() {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
 
+  // url path check
+  const pathname = usePathname();
+
   return (
-    <div className="bg-primary header-container w-full flex justify-between items-center">
+    <div className="bg-primary header-container flex justify-between items-center w-full">
       {/*  left -> 로고 + 서점 위치 페이지 버튼 + 검색  */}
       <div className="left-container flex h-full items-center">
-        <div className="logo flex items-center justify-center text-lg cursor-default">
+        <Link
+          href="/"
+          className="logo flex items-center justify-center text-lg cursor-default"
+        >
           Logo
-        </div>
-        <Link href="/" className="store-location-btn text-lg">
+        </Link>
+        <Link
+          href="/bookstoreLocation"
+          className={`store-location-btn text-lg max-xl:text-base max-md:text-sm max-sm:text-xs ${
+            pathname === "/bookstoreLocation" && "active"
+          }`}
+        >
           서점 위치
         </Link>
 
@@ -46,8 +58,12 @@ export default function Header() {
       <div className="right-container">
         <div className="default-container flex">
           {/* //! 추후 분기 처리 필요, 로그인 시에는 해당 영역 안보이게 */}
-          <button className="login-btn text-lg">로그인</button>
-          <button className="signup-btn text-lg">회원가입</button>
+          <button className="login-btn text-lg max-xl:text-base max-md:text-sm">
+            로그인
+          </button>
+          <button className="signup-btn text-lg max-xl:text-base max-md:text-sm">
+            회원가입
+          </button>
         </div>
       </div>
     </div>

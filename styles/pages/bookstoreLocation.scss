@@ -1,0 +1,95 @@
+@import "@/styles/globals.scss";
+div.store-location-wrap {
+  padding: 3.125rem;
+  color: $text-color;
+  gap: 3.125rem;
+
+  div.address-container {
+    gap: 3.125rem;
+    div.address-button-container {
+      gap: 2.6875rem;
+      height: 2.6875rem;
+      button {
+        width: 7.8125rem;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        cursor: pointer;
+        &:hover {
+          background-color: $point-color;
+          color: $border-color;
+        }
+
+        &.disabled {
+          color: $assistance-color;
+          cursor: unset;
+          &:hover {
+            background-color: unset;
+            color: $assistance-color;
+          }
+        }
+      }
+    }
+  }
+
+  div.map-container {
+    width: 30rem;
+    // height: 45rem;
+    border: 1px solid $border-color;
+  }
+
+  div.location-list-container {
+    width: fit-content;
+    height: 45rem;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    overflow-y: scroll;
+  }
+}
+
+@media (max-width: 80rem) {
+  // * xl size
+  div.store-location-wrap {
+    div.address-container {
+      min-width: 27%;
+      div.address-button-container {
+        gap: 15%;
+        button {
+          width: 50%;
+        }
+      }
+    }
+
+    div.map-container {
+      min-width: 34%;
+    }
+
+    div.location-list-container {
+      min-width: 32%;
+    }
+  }
+}
+
+@media (max-width: 48rem) {
+  div.store-location-wrap {
+    padding: 3.125rem 1.875rem;
+    gap: 1.875rem;
+  }
+}
+
+// *Mobile
+@media (max-width: 40rem) {
+  // * sm size
+  div.store-location-wrap {
+    div.address-container {
+      width: 100%;
+    }
+
+    div.map-container {
+      width: 100%;
+    }
+
+    div.location-list-container {
+      width: 100%;
+    }
+  }
+}
