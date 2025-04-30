@@ -22,6 +22,7 @@
 - swiper
 - react-toastify(toast 팝업)
 - react-loading-skeleton(skeleton loading)
+- mui (Icon)
 
 ## 페이지
 
