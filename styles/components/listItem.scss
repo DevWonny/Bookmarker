@@ -5,6 +5,14 @@ div.item {
   div.rank {
     width: 6.25rem;
   }
+  div.wish {
+    .active-mark-icon {
+      color: $point-color;
+    }
+    .disabled-mark-icon {
+      color: $assistance-color;
+    }
+  }
 
   div.thumbnail {
     width: 12.5rem;
