@@ -41,8 +41,8 @@ export default () => {
         </div>
 
         <div className="list-item-container">
-          <ListItem />
-          <ListItem />
+          <ListItem type="rank" />
+          <ListItem type="rank" />
         </div>
       </div>
     </div>

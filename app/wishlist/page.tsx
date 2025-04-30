@@ -1,4 +1,12 @@
-// 찜 목록 페이지
+"use client";
+import { useState } from "react";
+// component
+import ListItem from "@/components/common/listItem";
+
 export default () => {
-  return <div>찜 목록 페이지</div>;
+  return (
+    <div className="wishlist-warp">
+      <ListItem type="wish"></ListItem>
+    </div>
+  );
 };
