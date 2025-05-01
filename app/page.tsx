@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // component
 import ListItem from "@/components/common/listItem";
+
 // style
 import "@/styles/pages/main.scss";
 // swiper style

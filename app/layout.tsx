@@ -5,6 +5,7 @@ import LocalFont from "next/font/local";
 import "@/styles/globals.scss";
 // component
 import Header from "@/components/common/header";
+import AuthModal from "@/components/modals/authModal";
 
 // 영문 폰트
 const getInter = Inter({
@@ -80,6 +81,7 @@ export default function RootLayout({
         className={`${getInter.variable} ${getPretendard.variable}   antialiased `}
       >
         <Header />
+        <AuthModal />
         {children}
       </body>
     </html>
