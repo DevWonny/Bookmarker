@@ -1,8 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 // import { }  from 'react-hook-form' // * 추후 적용 예정
+
 // component
 import Input from "@/components/modals/form/input";
+
+// style
+import "@/styles/components/modals/signupForm.scss";
 
 export default function SignupForm() {
   // state
@@ -48,7 +52,7 @@ export default function SignupForm() {
         }}
       />
 
-      <button type="submit" className={`${isValid} && active `}>
+      <button type="submit" className={`${isValid && "active"}`}>
         회원가입
       </button>
     </div>

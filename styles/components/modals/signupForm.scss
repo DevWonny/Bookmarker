@@ -1,1 +1,17 @@
 @import "@/styles/globals.scss";
+div.signup-form-wrap {
+  button {
+    border: 2px solid $border-color;
+    border-radius: 8px;
+    color: $assistance-color;
+    cursor: default;
+    &.active {
+      color: $text-color;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover {
+        background-color: $border-color;
+      }
+    }
+  }
+}
