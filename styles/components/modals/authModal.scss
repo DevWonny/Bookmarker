@@ -8,6 +8,7 @@ div.auth-modal-wrap {
   z-index: 9;
   border-radius: 12px;
   border: 1px solid $border-color;
+  background-color: $bg-color;
 
   .close-icon {
     cursor: pointer;

@@ -10,7 +10,7 @@ export default function AuthModal() {
   return (
     <div className="auth-modal-wrap absolute">
       <CloseOutlinedIcon className="close-icon" />
-      <LoginForm />
+      {/* <LoginForm /> */}
       <SignupForm />
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+// import { }  from 'react-hook-form' // * 추후 적용 예정
 // component
 import Input from "@/components/modals/form/input";
 
@@ -8,8 +9,18 @@ export default function SignupForm() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [pwCheckValue, setPwCheckValue] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    if (idValue && pwValue && pwCheckValue) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }, [idValue, pwValue, pwCheckValue]);
+
   return (
-    <div className="signup-form-wrap">
+    <div className="signup-form-wrap flex flex-col">
       {/* // * ID */}
       <Input
         label="id"
@@ -36,6 +47,10 @@ export default function SignupForm() {
           setPwCheckValue(e.target.value);
         }}
       />
+
+      <button type="submit" className={`${isValid} && active `}>
+        회원가입
+      </button>
     </div>
   );
 }

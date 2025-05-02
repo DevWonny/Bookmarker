@@ -4,4 +4,10 @@ div.input-container {
   label {
     text-transform: uppercase;
   }
+
+  input {
+    outline: unset;
+    border-radius: 8px;
+    border: 2px solid $border-color;
+  }
 }

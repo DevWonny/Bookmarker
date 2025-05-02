@@ -31,7 +31,7 @@ export default function Input({
     }
   }, [label]);
   return (
-    <div className="input-container">
+    <div className="input-container flex flex-col ">
       <label htmlFor={label}>{labelText}</label>
       <input id={label} type={type} value={value} onChange={onChange} />
     </div>
