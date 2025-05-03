@@ -25,34 +25,37 @@ export default function SignupForm() {
 
   return (
     <div className="signup-form-wrap flex flex-col">
-      {/* // * ID */}
-      <Input
-        label="id"
-        value={idValue}
-        onChange={(e) => {
-          setIdValue(e.target.value);
-        }}
-      />
+      <div className="form-container flex flex-col">
+        <p className="form-title w-full text-center text-3xl">회원가입</p>
+        {/* // * ID */}
+        <Input
+          label="id"
+          value={idValue}
+          onChange={(e) => {
+            setIdValue(e.target.value);
+          }}
+        />
 
-      {/* // * Password */}
-      <Input
-        label="password"
-        value={pwValue}
-        onChange={(e) => {
-          setPwValue(e.target.value);
-        }}
-      />
+        {/* // * Password */}
+        <Input
+          label="password"
+          value={pwValue}
+          onChange={(e) => {
+            setPwValue(e.target.value);
+          }}
+        />
 
-      {/* // * Password Check */}
-      <Input
-        label="passwordCheck"
-        value={pwCheckValue}
-        onChange={(e) => {
-          setPwCheckValue(e.target.value);
-        }}
-      />
+        {/* // * Password Check */}
+        <Input
+          label="passwordCheck"
+          value={pwCheckValue}
+          onChange={(e) => {
+            setPwCheckValue(e.target.value);
+          }}
+        />
+      </div>
 
-      <button type="submit" className={`${isValid && "active"}`}>
+      <button type="submit" className={`${isValid && "active"} text-2xl`}>
         회원가입
       </button>
     </div>
