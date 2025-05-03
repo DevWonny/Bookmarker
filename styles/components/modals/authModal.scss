@@ -10,6 +10,14 @@ div.auth-modal-wrap {
   border: 1px solid $border-color;
   background-color: $bg-color;
 
+  &.hide {
+    display: none;
+  }
+
+  &.show {
+    display: block;
+  }
+
   .close-icon {
     cursor: pointer;
     width: 1.875rem;
