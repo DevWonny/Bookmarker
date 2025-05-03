@@ -5,7 +5,13 @@ import { usePathname } from "next/navigation";
 // style
 import "@/styles/components/header.scss";
 
-export default function Header() {
+// interface
+interface HeaderType {
+  onLoginClick?: (e: any) => void;
+  onSignupClick?: (e: any) => void;
+}
+
+export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   // state
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
@@ -58,10 +64,16 @@ export default function Header() {
       <div className="right-container">
         <div className="default-container flex">
           {/* //! 추후 분기 처리 필요, 로그인 시에는 해당 영역 안보이게 */}
-          <button className="login-btn text-lg max-xl:text-base max-md:text-sm">
+          <button
+            className="login-btn text-lg max-xl:text-base max-md:text-sm"
+            onClick={onLoginClick}
+          >
             로그인
           </button>
-          <button className="signup-btn text-lg max-xl:text-base max-md:text-sm">
+          <button
+            className="signup-btn text-lg max-xl:text-base max-md:text-sm"
+            onClick={onSignupClick}
+          >
             회원가입
           </button>
         </div>

@@ -1,0 +1,19 @@
+@import "@/styles/globals.scss";
+
+div.input-container {
+  width: 31.25rem;
+  gap: 0.625rem;
+
+  label {
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
+    height: 3.125rem;
+    outline: unset;
+    border-radius: 8px;
+    border: 2px solid $border-color;
+    padding: 10px;
+  }
+}

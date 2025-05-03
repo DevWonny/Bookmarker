@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { useEffect, useState } from "react";
 import { Inter, Special_Elite } from "next/font/google";
 import LocalFont from "next/font/local";
 import "@/styles/globals.scss";
 // component
-import Header from "@/components/common/header";
+import LayoutClient from "./layoutClient";
 
 // 영문 폰트
 const getInter = Inter({
@@ -75,12 +74,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <head></head>
       <body
         className={`${getInter.variable} ${getPretendard.variable}   antialiased `}
       >
-        <Header />
-        {children}
+        <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
   );
