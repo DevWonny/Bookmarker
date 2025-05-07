@@ -43,4 +43,19 @@ body {
     box-sizing: border-box;
     font-family: $font-inter, $font-pretendard, sans-serif;
   }
+
+  div.layout-disabled {
+    filter: blur(4px);
+  }
+
+  div.modal-container {
+    display: none;
+    &.active {
+      display: block;
+      top: 0;
+      left: 0;
+      background-color: rgba($assistance-color, 0.7);
+      z-index: 9;
+    }
+  }
 }

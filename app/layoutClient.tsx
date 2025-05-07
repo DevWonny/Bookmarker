@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 // component
@@ -25,22 +25,34 @@ export default function LayoutClient({
 
   return (
     <div>
-      <Header
-        onLoginClick={() => {
-          setIsLoginClick(true);
-          setIsSignupClick(false);
-        }}
-        onSignupClick={() => {
-          setIsLoginClick(false);
-          setIsSignupClick(true);
-        }}
-      />
-      <AuthModal
-        isLoginShow={isLoginClick}
-        isSignupShow={isSignupClick}
-        onCloseClick={onModalClose}
-      />
-      {children}
+      <div
+        className={`modal-container absolute w-full h-full ${
+          isLoginClick || isSignupClick ? "active" : ""
+        }`}
+      >
+        <AuthModal
+          isLoginShow={isLoginClick}
+          isSignupShow={isSignupClick}
+          onCloseClick={onModalClose}
+        />
+      </div>
+      <div
+        className={`layout-container ${
+          isLoginClick || isSignupClick ? "layout-disabled" : ""
+        }`}
+      >
+        <Header
+          onLoginClick={() => {
+            setIsLoginClick(true);
+            setIsSignupClick(false);
+          }}
+          onSignupClick={() => {
+            setIsLoginClick(false);
+            setIsSignupClick(true);
+          }}
+        />
+        {children}
+      </div>
     </div>
   );
 }
