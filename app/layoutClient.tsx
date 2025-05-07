@@ -29,6 +29,7 @@ export default function LayoutClient({
         className={`modal-container absolute w-full h-full ${
           isLoginClick || isSignupClick ? "active" : ""
         }`}
+        onClick={onModalClose}
       >
         <AuthModal
           isLoginShow={isLoginClick}

@@ -18,6 +18,7 @@ export default function AuthModal({
   isSignupShow = false,
   onCloseClick,
 }: AuthModalType) {
+  // function
   const checkModal = () => {
     if (isLoginShow || isSignupShow) {
       return true;
@@ -29,6 +30,7 @@ export default function AuthModal({
   return (
     <div
       className={`auth-modal-wrap absolute ${checkModal() ? "show" : "hide"}`}
+      onClick={(e) => e.stopPropagation()}
     >
       <CloseOutlinedIcon className="close-icon" onClick={onCloseClick} />
       {isLoginShow && <LoginForm />}
