@@ -39,6 +39,7 @@ export default function SignupForm() {
         {/* // * Password */}
         <Input
           label="password"
+          type="password"
           value={pwValue}
           onChange={(e) => {
             setPwValue(e.target.value);
@@ -48,6 +49,7 @@ export default function SignupForm() {
         {/* // * Password Check */}
         <Input
           label="passwordCheck"
+          type="password"
           value={pwCheckValue}
           onChange={(e) => {
             setPwCheckValue(e.target.value);

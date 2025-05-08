@@ -36,6 +36,7 @@ export default function LoginForm() {
         {/* //* PW */}
         <Input
           label="password"
+          type="password"
           value={pwValue}
           onChange={(e) => setPwValue(e.target.value)}
         />
