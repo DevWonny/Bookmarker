@@ -17,7 +17,7 @@ export default () => {
 
   const test = async () => {
     const res = await axios.get("/api/aladin", {
-      params: { key: 1, query: "test11" },
+      params: { ttbkey: "ttbcjfdnjs19941047001", query: "기억서점" },
     });
     console.log("🚀 ~ test ~ res:", res);
   };
