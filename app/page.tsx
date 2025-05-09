@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // component
 import ListItem from "@/components/common/listItem";
@@ -9,9 +9,18 @@ import "@/styles/pages/main.scss";
 // swiper style
 import "swiper/css";
 
+import { BookSearch } from "@/services/book";
+
 export default () => {
   const [listFilter, setListFilter] = useState("week");
 
+  const test = async () => {
+    await BookSearch();
+  };
+
+  useEffect(() => {
+    test();
+  }, []);
   return (
     <div className="main-wrap w-full">
       <Swiper className="banner-container">
