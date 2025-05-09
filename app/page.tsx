@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import axios from "axios";
 // component
 import ListItem from "@/components/common/listItem";
 
@@ -15,7 +16,10 @@ export default () => {
   const [listFilter, setListFilter] = useState("week");
 
   const test = async () => {
-    await BookSearch();
+    const res = await axios.get("/api/aladin", {
+      params: { key: 1, query: "test11" },
+    });
+    console.log("🚀 ~ test ~ res:", res);
   };
 
   useEffect(() => {
