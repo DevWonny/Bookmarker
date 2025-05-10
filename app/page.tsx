@@ -16,7 +16,7 @@ export default () => {
   const [listFilter, setListFilter] = useState("week");
 
   useEffect(() => {
-    BookSearch("기억서점");
+    BookSearch("야간약국");
     BookList("ItemNewSpecial");
   }, []);
 
