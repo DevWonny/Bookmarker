@@ -1,14 +1,14 @@
 import axios from 'axios';
-export const BookSearch = async () => {
-  const key = "ttbcjfdnjs19941047001";
 
-  const res = await axios.get(' http://www.aladin.co.kr/ttb/api/ItemSearch.aspx', {
-    params: {
-      ttbkey: key,
-      Query: '기억서점'
-    }
-  })
-  console.log("🚀 ~ BookSearch ~ res:", res)
+export const BookSearch = async (query: string) => {
+  const key = process.env.NEXT_PUBLIC_ALADIN_KEY;
 
 
-};
+  try {
+    const res = await axios.get('/api/aladin', { params: { ttbkey: key, query } });
+    console.log("🚀 ~ BookSearch ~ res:", res)
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}

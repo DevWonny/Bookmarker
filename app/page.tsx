@@ -15,16 +15,10 @@ import { BookSearch } from "@/services/book";
 export default () => {
   const [listFilter, setListFilter] = useState("week");
 
-  const test = async () => {
-    const res = await axios.get("/api/aladin", {
-      params: { ttbkey: "ttbcjfdnjs19941047001", query: "기억서점" },
-    });
-    console.log("🚀 ~ test ~ res:", res);
-  };
-
   useEffect(() => {
-    test();
+    BookSearch("기억서점");
   }, []);
+
   return (
     <div className="main-wrap w-full">
       <Swiper className="banner-container">

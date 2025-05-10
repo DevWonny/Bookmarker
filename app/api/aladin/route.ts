@@ -3,11 +3,11 @@ import { parseStringPromise } from 'xml2js';
 import axios from "axios";
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  console.log('req :', req)
   const query = new URL(req.url).searchParams.toString();
-  console.log("🚀 ~ GET ~ test:", query);
+  const url = process.env.NEXT_PUBLIC_ALADIN_URL;
+
   try {
-    const res = await axios.get(`http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?${query}`, { responseType: 'text' });
+    const res = await axios.get(`${url}/ItemSearch.aspx?${query}`, { responseType: 'text' });
 
     const jsonData = await parseStringPromise(res.data, {
       explicitArray: false,
