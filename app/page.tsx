@@ -10,13 +10,14 @@ import "@/styles/pages/main.scss";
 // swiper style
 import "swiper/css";
 
-import { BookSearch } from "@/services/book";
+import { BookSearch, BookList } from "@/services/book";
 
 export default () => {
   const [listFilter, setListFilter] = useState("week");
 
   useEffect(() => {
     BookSearch("기억서점");
+    BookList("ItemNewSpecial");
   }, []);
 
   return (
