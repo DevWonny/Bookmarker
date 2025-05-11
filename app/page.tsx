@@ -44,6 +44,11 @@ export default () => {
           bannerList.map((banner) => (
             <SwiperSlide>
               <img src={banner.cover} alt="Book Cover" />
+              <p>{banner.title}</p>
+              <p>{banner.author}</p>
+              <p>{banner.description}</p>
+              <p>{banner.pubDate}</p>
+              <p>{banner.publisher}</p>
             </SwiperSlide>
           ))}
       </Swiper>
