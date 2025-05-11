@@ -13,9 +13,26 @@ export const BookSearch = async (query: string) => {
 
 export const BookList = async (type: string) => {
   try {
+    // * Main Banner 사용 용도
+    if (type === 'ItemNewSpecial') {
+      const res = await axios.get('/api/aladin/bookList', {
+        params: { ttbkey: key, queryType: type, searchTarget: 'Book', Version: 20131101, maxResults: 3, Cover: 'Big' }
+      });
+
+      const { data, status } = res;
+      if (status !== 200) {
+        return 'Book List Main Banner Error';
+      }
+
+      return data.item;
+    }
+
+    // * Main 하단 Bestseller List
     const res = await axios.get('/api/aladin/bookList', {
       params: { ttbkey: key, queryType: type, searchTarget: 'Book', Version: 20131101 }
     });
+
+    console.log("🚀 ~ BookList ~ res:", res)
     return res;
   } catch (err) {
     console.error('err - ', err)

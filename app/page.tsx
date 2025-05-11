@@ -4,27 +4,48 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import axios from "axios";
 // component
 import ListItem from "@/components/common/listItem";
-
+// service
+import { BookSearch, BookList } from "@/services/book";
+// type
+import { BannerItem } from "@/types/main";
 // style
 import "@/styles/pages/main.scss";
 // swiper style
 import "swiper/css";
 
-import { BookSearch, BookList } from "@/services/book";
-
 export default () => {
   const [listFilter, setListFilter] = useState("week");
+  const [bannerList, setBannerList] = useState<BannerItem[] | null>(null);
+
+  const onBannerList = async () => {
+    try {
+      const list = await BookList("ItemNewSpecial");
+      if (list && list.length > 0) {
+        setBannerList(list);
+      }
+    } catch (err) {
+      return err;
+    }
+  };
 
   useEffect(() => {
-    BookSearch("야간약국");
-    BookList("ItemNewSpecial");
+    onBannerList();
   }, []);
+
+  useEffect(() => {
+    console.log("🚀 ~ bannerList:", bannerList);
+  }, [bannerList]);
 
   return (
     <div className="main-wrap w-full">
       <Swiper className="banner-container">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
+        {bannerList &&
+          bannerList.length > 0 &&
+          bannerList.map((banner) => (
+            <SwiperSlide>
+              <img src={banner.cover} alt="Book Cover" />
+            </SwiperSlide>
+          ))}
       </Swiper>
 
       <div className="rank-list-container w-full flex flex-col">
