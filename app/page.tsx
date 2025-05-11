@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
 // component
 import ListItem from "@/components/common/listItem";
 // service
@@ -44,11 +43,10 @@ export default () => {
           bannerList.map((banner) => (
             <SwiperSlide>
               <img src={banner.cover} alt="Book Cover" />
-              <p>{banner.title}</p>
-              <p>{banner.author}</p>
-              <p>{banner.description}</p>
-              <p>{banner.pubDate}</p>
-              <p>{banner.publisher}</p>
+              <div className="banner-info-container flex flex-col justify-center items-end">
+                <h1 className="banner-title text-4xl">{banner.title}</h1>
+                <p className="banner-description">{banner.description}</p>
+              </div>
             </SwiperSlide>
           ))}
       </Swiper>

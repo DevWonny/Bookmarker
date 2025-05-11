@@ -7,8 +7,33 @@ div.main-wrap {
     // ! Swiper에 Data Binding시에 제거 예정
     div.swiper-slide {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      padding: 3.125rem 3.125rem 3.125rem 9.375rem;
+      &:first-child {
+        background-color: #fceee2;
+      }
+
+      &:nth-child(2) {
+        background-color: #e6c9ac;
+      }
+
+      &:last-child {
+        background-color: #dbc1ac;
+      }
+
+      div.banner-info-container {
+        color: $text-color;
+        gap: 3.125rem;
+        text-align: end;
+        h1 {
+          width: fit-content;
+          text-shadow: 4px 4px 4px rgba($assistance-color, 0.8);
+          text-decoration: italic;
+        }
+        p.banner-description {
+          max-width: 65ch;
+        }
+      }
     }
   }
 
