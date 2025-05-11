@@ -45,7 +45,9 @@ export default () => {
               <img src={banner.cover} alt="Book Cover" />
               <div className="banner-info-container flex flex-col justify-center items-end">
                 <h1 className="banner-title text-4xl">{banner.title}</h1>
-                <p className="banner-description">{banner.description}</p>
+                <p className="banner-description text-lg">
+                  {banner.description}
+                </p>
               </div>
             </SwiperSlide>
           ))}

@@ -25,10 +25,10 @@ div.main-wrap {
         color: $text-color;
         gap: 3.125rem;
         text-align: end;
+        cursor: default;
         h1 {
           width: fit-content;
           text-shadow: 4px 4px 4px rgba($assistance-color, 0.8);
-          text-decoration: italic;
         }
         p.banner-description {
           max-width: 65ch;
