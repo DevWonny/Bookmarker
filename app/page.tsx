@@ -9,6 +9,8 @@ import { BookSearch, BookList } from "@/services/book";
 import { BannerItem } from "@/types/main";
 // style
 import "@/styles/pages/main.scss";
+// skeleton ui
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 // swiper style
 import "swiper/css";
 
@@ -37,10 +39,9 @@ export default () => {
 
   return (
     <div className="main-wrap w-full">
-      <Swiper className="banner-container">
-        {bannerList &&
-          bannerList.length > 0 &&
-          bannerList.map((banner) => (
+      {bannerList && bannerList.length > 0 ? (
+        <Swiper className="banner-container">
+          {bannerList.map((banner) => (
             <SwiperSlide>
               <img src={banner.cover} alt="Book Cover" />
               <div className="banner-info-container flex flex-col justify-center items-end">
@@ -51,7 +52,12 @@ export default () => {
               </div>
             </SwiperSlide>
           ))}
-      </Swiper>
+        </Swiper>
+      ) : (
+        <SkeletonTheme baseColor="#e6c9ac" highlightColor="#fff8f1">
+          <Skeleton height="25rem" width="100%" style={{ display: "block" }} />
+        </SkeletonTheme>
+      )}
 
       <div className="rank-list-container w-full flex flex-col">
         <div className="btn-container flex justify-end">

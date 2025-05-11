@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Special_Elite } from "next/font/google";
 import LocalFont from "next/font/local";
 import "@/styles/globals.scss";
+// skeleton ui
+import "react-loading-skeleton/dist/skeleton.css";
 // component
 import LayoutClient from "./layoutClient";
 
