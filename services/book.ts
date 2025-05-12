@@ -21,9 +21,9 @@ export const BookList = async (type: string) => {
 
       const { data, status } = res;
       if (status !== 200) {
+
         return 'Book List Main Banner Error';
       }
-
       return data.item.filter((el: any) => el.description).slice(0, 3);
     }
 
@@ -37,8 +37,6 @@ export const BookList = async (type: string) => {
     }
 
     return data.item;
-
-    return res;
   } catch (err) {
     console.error('err - ', err)
   }

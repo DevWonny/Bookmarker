@@ -19,7 +19,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
   } catch (err) {
     console.log('err', err);
-    return NextResponse.json({ code: 'Error' });
+    return NextResponse.json({ code: 'Error', description: err });
   }
 
 }

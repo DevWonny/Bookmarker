@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // component
 import ListItem from "@/components/common/listItem";
+import SkeletonListItem from "@/components/common/skeletonListItem";
 // service
 import { BookSearch, BookList } from "@/services/book";
 // type
@@ -43,7 +44,7 @@ export default () => {
 
   useEffect(() => {
     onBannerList();
-    onBookList();
+    // onBookList();
   }, []);
 
   useEffect(() => {
@@ -95,15 +96,17 @@ export default () => {
         </div>
 
         <div className="list-item-container">
-          {bookList &&
-            bookList.length > 0 &&
+          {bookList && bookList.length > 0 ? (
             bookList.map((item, index) => (
               <ListItem
                 key={`main-book-list-item-${index}`}
                 type="rank"
                 item={item}
               />
-            ))}
+            ))
+          ) : (
+            <SkeletonListItem></SkeletonListItem>
+          )}
         </div>
       </div>
     </div>
