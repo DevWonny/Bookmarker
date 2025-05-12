@@ -6,7 +6,7 @@ import ListItem from "@/components/common/listItem";
 // service
 import { BookSearch, BookList } from "@/services/book";
 // type
-import { BannerItem } from "@/types/main";
+import { BannerItem, BookItem } from "@/types/main";
 // style
 import "@/styles/pages/main.scss";
 // skeleton ui
@@ -17,6 +17,7 @@ import "swiper/css";
 export default () => {
   const [listFilter, setListFilter] = useState("week");
   const [bannerList, setBannerList] = useState<BannerItem[] | null>(null);
+  const [bookList, setBookList] = useState<BookItem[] | null>(null);
 
   const onBannerList = async () => {
     try {
@@ -29,13 +30,25 @@ export default () => {
     }
   };
 
+  const onBookList = async () => {
+    try {
+      const list = await BookList("Bestseller");
+      if (list && list.length > 0) {
+        setBookList(list);
+      }
+    } catch (err) {
+      return err;
+    }
+  };
+
   useEffect(() => {
     onBannerList();
+    onBookList();
   }, []);
 
   useEffect(() => {
-    console.log("🚀 ~ bannerList:", bannerList);
-  }, [bannerList]);
+    console.log("🚀 ~ bookList:", bookList);
+  }, [bookList]);
 
   return (
     <div className="main-wrap w-full">
@@ -82,8 +95,15 @@ export default () => {
         </div>
 
         <div className="list-item-container">
-          <ListItem type="rank" />
-          <ListItem type="rank" />
+          {bookList &&
+            bookList.length > 0 &&
+            bookList.map((item, index) => (
+              <ListItem
+                key={`main-book-list-item-${index}`}
+                type="rank"
+                item={item}
+              />
+            ))}
         </div>
       </div>
     </div>

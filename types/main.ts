@@ -9,3 +9,11 @@ export interface BannerItem {
   pubDate: string; // 출간일자
   title: string; // 제목
 }
+
+// * Book List Item
+export interface BookItem extends BannerItem {
+  bestDuration: string;
+  bestRank: string;
+  customerReviewRank: string;
+  categoryName: string;
+}

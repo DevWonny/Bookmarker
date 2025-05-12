@@ -31,8 +31,13 @@ export const BookList = async (type: string) => {
     const res = await axios.get('/api/aladin/bookList', {
       params: { ttbkey: key, queryType: type, searchTarget: 'Book', Version: 20131101 }
     });
+    const { data, status } = res;
+    if (status !== 200) {
+      return 'Book List Bestseller Error';
+    }
 
-    console.log("🚀 ~ BookList ~ res:", res)
+    return data.item;
+
     return res;
   } catch (err) {
     console.error('err - ', err)

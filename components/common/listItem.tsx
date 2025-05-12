@@ -1,6 +1,7 @@
 // * Main에서는 좌측에 순위가 나오고, 도서 검색 결과에서는 순위가 없는 상태, 찜 목록에서는 찜 해제 토글 버튼 표출
 // * 그 외에는 동일
-
+// type
+import { BookItem } from "@/types/main";
 // icon
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
@@ -11,13 +12,17 @@ import "@/styles/components/listItem.scss";
 type ListType = "rank" | "result" | "wish";
 interface ListItemProps {
   type: ListType;
+  item: BookItem;
 }
 
-export default function ListItem({ type }: ListItemProps) {
+export default function ListItem({ type, item }: ListItemProps) {
+  console.log("🚀 ~ item:", item);
   return (
     <div className="item flex flex-row ">
       {type === "rank" && (
-        <div className="rank h-full flex items-center justify-center">1</div>
+        <div className="rank h-full flex items-center justify-center">
+          {item.bestRank}
+        </div>
       )}
 
       {type === "wish" && (
