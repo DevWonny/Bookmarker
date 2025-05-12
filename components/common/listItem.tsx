@@ -33,7 +33,7 @@ export default function ListItem({ type, item }: ListItemProps) {
       )}
 
       <div className="thumbnail h-full flex items-center justify-center">
-        Thumbnail
+        <img src={item.cover} alt="Book Thumbnail" />
       </div>
       <div className="information h-full flex items-center justify-center">
         Book Information
