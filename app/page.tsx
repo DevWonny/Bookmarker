@@ -8,6 +8,8 @@ import SkeletonListItem from "@/components/common/skeletonListItem";
 import { BookSearch, BookList } from "@/services/book";
 // type
 import { BannerItem, BookItem } from "@/types/main";
+// utils
+import { RemoveParentheses, RemoveHyphen } from "@/utils/removeText";
 // style
 import "@/styles/pages/main.scss";
 // skeleton ui
@@ -44,12 +46,8 @@ export default () => {
 
   useEffect(() => {
     onBannerList();
-    // onBookList();
+    onBookList();
   }, []);
-
-  useEffect(() => {
-    console.log("🚀 ~ bookList:", bookList);
-  }, [bookList]);
 
   return (
     <div className="main-wrap w-full">
@@ -59,7 +57,9 @@ export default () => {
             <SwiperSlide>
               <img src={banner.cover} alt="Book Cover" />
               <div className="banner-info-container flex flex-col justify-center items-end">
-                <h1 className="banner-title text-4xl">{banner.title}</h1>
+                <h1 className="banner-title text-4xl">
+                  {RemoveHyphen(banner.title)}
+                </h1>
                 <p className="banner-description text-lg">
                   {banner.description}
                 </p>
