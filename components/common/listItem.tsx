@@ -2,6 +2,8 @@
 // * 그 외에는 동일
 // type
 import { BookItem } from "@/types/main";
+// util
+import { RemoveHyphen, RemoveParentheses } from "@/utils/removeText";
 // icon
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
@@ -35,8 +37,15 @@ export default function ListItem({ type, item }: ListItemProps) {
       <div className="thumbnail h-full flex items-center justify-center">
         <img src={item.cover} alt="Book Thumbnail" />
       </div>
-      <div className="information h-full flex items-center justify-center">
-        Book Information
+
+      <div className="information h-full flex flex-col items-start justify-center">
+        <p className="best-duration">{item.bestDuration}</p>
+        <h1 className="book-title">{RemoveHyphen(item.title)}</h1>
+        <div className="publish-container">{`${RemoveParentheses(
+          item.author
+        )} | ${item.publisher} | ${item.pubDate}`}</div>
+        <p className="book-description">{item.description}</p>
+        <p className="book-category">{item.categoryName}</p>
       </div>
     </div>
   );
