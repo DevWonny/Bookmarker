@@ -19,6 +19,12 @@ interface ListItemProps {
 
 export default function ListItem({ type, item }: ListItemProps) {
   console.log("🚀 ~ item:", item);
+
+  const onConvertPrice = (price: string) => {
+    const toNumberPrice = parseInt(price);
+    return toNumberPrice.toLocaleString();
+  };
+
   return (
     <div className="item flex flex-row ">
       {type === "rank" && (
@@ -50,6 +56,13 @@ export default function ListItem({ type, item }: ListItemProps) {
           {item.description}
         </p>
         <p className="book-category text-xs font-medium">{item.categoryName}</p>
+      </div>
+
+      <div className="wish-container h-full flex flex-col items-center justify-center">
+        <p className="price text-base">
+          {onConvertPrice(item.priceStandard)}원
+        </p>
+        <button className="wish-button text-base">찜하기</button>
       </div>
     </div>
   );
