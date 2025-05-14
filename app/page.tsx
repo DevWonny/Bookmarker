@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // component
 import ListItem from "@/components/common/listItem";
@@ -18,9 +18,14 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "swiper/css";
 
 export default () => {
+  // state
   const [listFilter, setListFilter] = useState("week");
   const [bannerList, setBannerList] = useState<BannerItem[] | null>(null);
   const [bookList, setBookList] = useState<BookItem[] | null>(null);
+  const [curPage, setCurPage] = useState<number | null>(null);
+  const [hasMore, setHasMore] = useState(false);
+  const observeRef = useRef(null);
+  const totalPage = useRef(10);
 
   const onBannerList = async () => {
     try {
@@ -33,13 +38,31 @@ export default () => {
     }
   };
 
+  // 초기 10개 리스트 호출
   const onBookList = async () => {
     try {
       const list = await BookList("Bestseller");
-      if (list && list.length > 0) {
-        setBookList(list);
+      const { item, startIndex } = list;
+      const convertIndex = parseInt(startIndex);
+      setCurPage(convertIndex);
+      if (item && item.length > 0) {
+        setBookList(item);
       }
     } catch (err) {
+      return err;
+    }
+  };
+
+  // 이후 무한스크롤 리스트
+  const onInfiniteBookList = async () => {
+    try {
+      const list = await BookList("Bestseller", curPage);
+      const { item } = list;
+      if (item && item.length > 0) {
+        setBookList((prev: any) => [...prev, ...item]);
+      }
+    } catch (err) {
+      console.log("Infinite Scroll Error - ", err);
       return err;
     }
   };
@@ -49,6 +72,39 @@ export default () => {
     onBookList();
   }, []);
 
+  useEffect(() => {
+    if (curPage === totalPage.current) {
+      setHasMore(false);
+    } else {
+      setHasMore(true);
+    }
+  }, [curPage]);
+
+  useEffect(() => {
+    const observe = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setCurPage((prev) => prev && prev + 1);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (observeRef.current) {
+      observe.observe(observeRef.current);
+    }
+
+    return () => {
+      if (observeRef.current) observe.unobserve(observeRef.current);
+    };
+  }, [hasMore]);
+
+  useEffect(() => {
+    if (!hasMore || curPage === 1) {
+      return;
+    }
+    onInfiniteBookList();
+  }, [curPage]);
   return (
     <div className="main-wrap w-full">
       {bannerList && bannerList.length > 0 ? (
@@ -107,6 +163,8 @@ export default () => {
           ) : (
             <SkeletonListItem></SkeletonListItem>
           )}
+
+          <div ref={observeRef} className="observe-container"></div>
         </div>
       </div>
     </div>

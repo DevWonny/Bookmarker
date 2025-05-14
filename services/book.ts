@@ -11,7 +11,7 @@ export const BookSearch = async (query: string) => {
   }
 }
 
-export const BookList = async (type: string) => {
+export const BookList = async (type: string, start: number | null = 1) => {
   try {
     // * Main Banner 사용 용도
     if (type === 'ItemNewSpecial') {
@@ -29,14 +29,14 @@ export const BookList = async (type: string) => {
 
     // * Main 하단 Bestseller List
     const res = await axios.get('/api/aladin/bookList', {
-      params: { ttbkey: key, queryType: type, searchTarget: 'Book', Version: 20131101 }
+      params: { ttbkey: key, queryType: type, searchTarget: 'Book', Version: 20131101, start }
     });
     const { data, status } = res;
     if (status !== 200) {
       return 'Book List Bestseller Error';
     }
 
-    return data.item;
+    return data;
   } catch (err) {
     console.error('err - ', err)
   }
