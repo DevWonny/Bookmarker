@@ -39,13 +39,17 @@ export default function ListItem({ type, item }: ListItemProps) {
       </div>
 
       <div className="information h-full flex flex-col items-start justify-center">
-        <p className="best-duration">{item.bestDuration}</p>
-        <h1 className="book-title">{RemoveHyphen(item.title)}</h1>
-        <div className="publish-container">{`${RemoveParentheses(
+        <p className="best-duration text-xs">{item.bestDuration}</p>
+        <h1 className="book-title text-lg font-bold">
+          {RemoveHyphen(item.title)}
+        </h1>
+        <p className="book-publish text-sm font-medium">{`${RemoveParentheses(
           item.author
-        )} | ${item.publisher} | ${item.pubDate}`}</div>
-        <p className="book-description">{item.description}</p>
-        <p className="book-category">{item.categoryName}</p>
+        )} | ${item.publisher} | ${item.pubDate}`}</p>
+        <p className="book-description text-base font-normal">
+          {item.description}
+        </p>
+        <p className="book-category text-xs font-medium">{item.categoryName}</p>
       </div>
     </div>
   );
