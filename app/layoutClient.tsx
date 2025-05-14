@@ -53,6 +53,10 @@ export default function LayoutClient({
           }}
         />
         {children}
+
+        <button className="top-btn fixed" type="button">
+          Top
+        </button>
       </div>
     </div>
   );

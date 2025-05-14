@@ -39,6 +39,7 @@ $warning-border-color: #f3c1ba;
 body {
   background: $bg-color;
   color: $text-color;
+  position: relative;
   &* {
     box-sizing: border-box;
     font-family: $font-inter, $font-pretendard, sans-serif;
@@ -57,5 +58,16 @@ body {
       background-color: rgba($assistance-color, 0.7);
       z-index: 9;
     }
+  }
+
+  button.top-btn {
+    background-color: red;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 999px;
+    z-index: 99;
+    cursor: pointer;
   }
 }
