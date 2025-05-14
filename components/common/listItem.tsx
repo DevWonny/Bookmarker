@@ -18,8 +18,6 @@ interface ListItemProps {
 }
 
 export default function ListItem({ type, item }: ListItemProps) {
-  console.log("🚀 ~ item:", item);
-
   const onConvertPrice = (price: string) => {
     const toNumberPrice = parseInt(price);
     return toNumberPrice.toLocaleString();
@@ -45,7 +43,10 @@ export default function ListItem({ type, item }: ListItemProps) {
       </div>
 
       <div className="information h-full flex flex-col items-start justify-center">
-        <p className="best-duration text-xs">{item.bestDuration}</p>
+        {item.bestDuration && (
+          <p className="best-duration text-xs">{item.bestDuration}</p>
+        )}
+
         <h1 className="book-title text-lg font-bold">
           {RemoveHyphen(item.title)}
         </h1>

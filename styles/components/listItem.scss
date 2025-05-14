@@ -1,7 +1,8 @@
 @import "@/styles/globals.scss";
 
 div.item {
-  height: 12.5rem;
+  // height: 12.5rem;
+  height: 15.625rem;
   div.rank {
     width: 6.25rem;
   }
@@ -20,7 +21,7 @@ div.item {
 
   div.information {
     width: calc(100% - 18.75rem);
-    padding: 0 1.25rem;
+    padding: 0.625rem 1.25rem;
     gap: 0.5rem;
     p.best-duration {
       width: fit-content;
@@ -32,16 +33,9 @@ div.item {
       padding: 0 0.5rem;
     }
 
-    h1.book-title {
-    }
-
     p.book-publish,
     p.book-category {
       color: $assistance-color;
-    }
-
-    p.book-description {
-      // width: 80%;
     }
   }
 
