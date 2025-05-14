@@ -87,12 +87,10 @@ export default () => {
           setCurPage((prev) => prev && prev + 1);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.5 }
     );
 
-    if (observeRef.current) {
-      observe.observe(observeRef.current);
-    }
+    if (observeRef.current) observe.observe(observeRef.current);
 
     return () => {
       if (observeRef.current) observe.unobserve(observeRef.current);
