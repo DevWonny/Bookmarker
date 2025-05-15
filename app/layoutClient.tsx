@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 // component
 import Header from "@/components/common/header";
 import AuthModal from "@/components/modals/authModal";
+// icon
+import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 
 export default function LayoutClient({
   children,
@@ -78,7 +80,7 @@ export default function LayoutClient({
             type="button"
             onClick={onScrollToTop}
           >
-            Top
+            <ArrowUpwardOutlinedIcon className="top-icon"></ArrowUpwardOutlinedIcon>
           </button>
         )}
       </div>
