@@ -61,7 +61,6 @@ body {
   }
 
   button.top-btn {
-    background-color: red;
     bottom: 1.25rem;
     right: 1.25rem;
     width: 3.125rem;
@@ -69,5 +68,12 @@ body {
     border-radius: 999px;
     z-index: 99;
     cursor: pointer;
+    border: 1px solid $assistance-color;
+    color: $text-color;
+    &:hover {
+      background-color: $point-color;
+      border: 1px solid $point-color;
+      font-weight: 600;
+    }
   }
 }

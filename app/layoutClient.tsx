@@ -26,7 +26,6 @@ export default function LayoutClient({
 
   useEffect(() => {
     const onVisibility = () => {
-      console.log(window.scrollY);
       if (window.scrollY > 50) {
         setIsVisibleTopBtn(true);
       } else {
