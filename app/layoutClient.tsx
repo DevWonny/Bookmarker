@@ -12,12 +12,31 @@ export default function LayoutClient({
   // state
   const [isLoginClick, setIsLoginClick] = useState(false);
   const [isSignupClick, setIsSignupClick] = useState(false);
+  const [isVisibleTopBtn, setIsVisibleTopBtn] = useState(false);
   const pathname = usePathname();
 
   const onModalClose = () => {
     setIsLoginClick(false);
     setIsSignupClick(false);
   };
+
+  const onScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const onVisibility = () => {
+      console.log(window.scrollY);
+      if (window.scrollY > 50) {
+        setIsVisibleTopBtn(true);
+      } else {
+        setIsVisibleTopBtn(false);
+      }
+    };
+
+    window.addEventListener("scroll", onVisibility);
+    return () => window.removeEventListener("scroll", onVisibility);
+  }, []);
 
   useEffect(() => {
     onModalClose();
@@ -54,9 +73,15 @@ export default function LayoutClient({
         />
         {children}
 
-        <button className="top-btn fixed" type="button">
-          Top
-        </button>
+        {isVisibleTopBtn && (
+          <button
+            className="top-btn fixed"
+            type="button"
+            onClick={onScrollToTop}
+          >
+            Top
+          </button>
+        )}
       </div>
     </div>
   );
