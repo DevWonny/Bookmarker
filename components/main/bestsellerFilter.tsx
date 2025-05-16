@@ -16,8 +16,21 @@ export default function BestsellerFilter({ type }: FilterType) {
   const [showList, setShowList] = useState(false);
 
   // 현재 주차 계산 로직
+  const currentWeek = () => {
+    const today = dayjs();
+    const startOfMonth = today.startOf("month");
+    const curIsoWeek = today.isoWeek();
+    const startIsoWeek = startOfMonth.isoWeek();
+    let weekOfMonth = curIsoWeek - startIsoWeek + 1;
 
-  // 해당 월의 전체 주차 계산 로직
+    if (today.isoWeekYear() !== startOfMonth.isoWeekYear()) {
+      weekOfMonth = curIsoWeek;
+    }
+
+    return weekOfMonth;
+  };
+
+  // 해당 월의 전체 주차 계산
 
   useEffect(() => {
     if (type === "year") {
@@ -27,9 +40,7 @@ export default function BestsellerFilter({ type }: FilterType) {
       const todayMonth = dayjs().format("MM");
       setFilterValue(todayMonth);
     } else if (type === "week") {
-      const todayWeek = dayjs().isoWeek();
-      console.log("🚀 ~ useEffect ~ todayWeek:", todayWeek);
-      setFilterValue(todayWeek);
+      setFilterValue(currentWeek);
     }
   }, []);
 
