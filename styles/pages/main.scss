@@ -43,16 +43,6 @@ div.main-wrap {
     div.btn-container {
       padding-right: 3.125rem;
       gap: 1.875rem;
-      button {
-        cursor: pointer;
-        &:hover {
-          color: $point-color;
-        }
-        &.active {
-          color: $point-color;
-          font-weight: 600;
-        }
-      }
     }
   }
 }
