@@ -29,7 +29,7 @@ export const BookList = async (type: string, start: number | null = 1) => {
 
     // * Main 하단 Bestseller List
     const res = await axios.get('/api/aladin/bookList', {
-      params: { ttbkey: key, queryType: type, searchTarget: 'Book', Version: 20131101, start }
+      params: { ttbkey: key, queryType: type, searchTarget: 'Book', Version: 20131101, start, cover: 'MidBig' }
     });
     const { data, status } = res;
     if (status !== 200) {

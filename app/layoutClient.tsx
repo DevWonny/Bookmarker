@@ -43,10 +43,6 @@ export default function LayoutClient({
     onModalClose();
   }, [pathname]);
 
-  const test = () => {
-    return "test";
-  };
-
   return (
     <div>
       <div
