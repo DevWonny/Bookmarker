@@ -31,6 +31,23 @@ export default function BestsellerFilter({ type }: FilterType) {
   };
 
   // 해당 월의 전체 주차 계산
+  const allMonthWeek = () => {
+    const date = dayjs("2024-06");
+    const startOfMonth = date.startOf("month");
+    const endOfMonth = date.endOf("month");
+
+    let startWeek = startOfMonth.isoWeek();
+    let endWeek = endOfMonth.isoWeek();
+
+    if (startOfMonth.isoWeekYear() !== endOfMonth.isoWeekYear()) {
+      const lastWeekOfYear = dayjs(
+        `${startOfMonth.isoWeekYear()}-12-31`
+      ).isoWeek();
+      endWeek = lastWeekOfYear + endWeek;
+    }
+
+    return endWeek - startWeek + 1;
+  };
 
   useEffect(() => {
     if (type === "year") {
@@ -41,6 +58,7 @@ export default function BestsellerFilter({ type }: FilterType) {
       setFilterValue(todayMonth);
     } else if (type === "week") {
       setFilterValue(currentWeek);
+      allMonthWeek();
     }
   }, []);
 
