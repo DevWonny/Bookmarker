@@ -47,9 +47,13 @@ body {
 
   div.layout-disabled {
     filter: blur(4px);
+    overflow: hidden;
+    height: 100vh;
   }
 
   div.modal-container {
+    width: 100%;
+    height: 100vh;
     display: none;
     &.active {
       display: block;
