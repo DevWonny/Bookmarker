@@ -9,9 +9,11 @@ dayjs.locale("ko");
 
 interface FilterType {
   type: string; // year, month, week
+  year?: string | null;
+  month?: string | null;
 }
 
-export default function BestsellerFilter({ type }: FilterType) {
+export default function BestsellerFilter({ type, year, month }: FilterType) {
   const [filterValue, setFilterValue] = useState<number | string>("");
   const [showList, setShowList] = useState(false);
 
@@ -32,7 +34,7 @@ export default function BestsellerFilter({ type }: FilterType) {
 
   // 해당 월의 전체 주차 계산
   const allMonthWeek = () => {
-    const date = dayjs("2024-06");
+    const date = dayjs();
     const startOfMonth = date.startOf("month");
     const endOfMonth = date.endOf("month");
 
@@ -50,21 +52,29 @@ export default function BestsellerFilter({ type }: FilterType) {
   };
 
   useEffect(() => {
-    if (type === "year") {
-      const todayYear = dayjs().format("YYYY");
-      setFilterValue(todayYear);
-    } else if (type === "month") {
-      const todayMonth = dayjs().format("MM");
-      setFilterValue(todayMonth);
-    } else if (type === "week") {
+    if (type === "week") {
       setFilterValue(currentWeek);
-      allMonthWeek();
     }
   }, []);
 
+  useEffect(() => {
+    if (type === "year" && year) {
+      setFilterValue(year);
+    }
+  }, [year]);
+
+  useEffect(() => {
+    if (type === "month" && month) {
+      setFilterValue(month);
+    }
+  }, [month]);
+
   return (
     <div className="bestseller-filter-container">
-      <p>{filterValue}</p>
+      <p>
+        {filterValue}{" "}
+        {type === "year" ? "년" : type === "month" ? "월" : "주차"}
+      </p>
     </div>
   );
 }

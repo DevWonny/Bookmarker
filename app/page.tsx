@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import dayjs from "dayjs";
 // component
 import ListItem from "@/components/common/listItem";
 import SkeletonListItem from "@/components/common/skeletonListItem";
@@ -26,6 +27,8 @@ export default () => {
   const [hasMore, setHasMore] = useState(false);
   const observeRef = useRef(null);
   const totalPage = useRef(10);
+  const [filterYear, setFilterYear] = useState<string | null>(null);
+  const [filterMonth, setFilterMonth] = useState<string | null>(null);
 
   const onBannerList = async () => {
     try {
@@ -70,6 +73,9 @@ export default () => {
   useEffect(() => {
     onBannerList();
     onBookList();
+    // Filter 초기화
+    setFilterYear(() => dayjs().format("YYYY"));
+    setFilterMonth(() => dayjs().format("MM"));
   }, []);
 
   useEffect(() => {
@@ -129,9 +135,9 @@ export default () => {
 
       <div className="rank-list-container w-full flex flex-col">
         <div className="btn-container flex justify-end">
-          <BestsellerFilter type="year" />
-          <BestsellerFilter type="month" />
-          <BestsellerFilter type="week" />
+          <BestsellerFilter type="year" year={filterYear} />
+          <BestsellerFilter type="month" month={filterMonth} />
+          <BestsellerFilter type="week" year={filterYear} month={filterMonth} />
         </div>
 
         <div className="list-item-container">
