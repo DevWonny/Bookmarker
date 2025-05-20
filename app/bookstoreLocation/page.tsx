@@ -1,12 +1,63 @@
 // 서점 위치 페이지
+"use client";
+import { useEffect, useRef } from "react";
 // component
 import AddressFilter from "@/components/bookstoreLocation/addressFilter";
 import LocationItem from "@/components/bookstoreLocation/locationItem";
 
+// service
+import { AddressTest } from "@/services/address";
+
 // style
 import "@/styles/pages/bookstoreLocation.scss";
 
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 export default () => {
+  const MapRef = useRef(null);
+
+  useEffect(() => {
+    if (window.kakao && window.kakao.maps) {
+      initMap();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce6981d1edbff9b162ff07faef0c58f&autoload=false";
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        initMap();
+      });
+    };
+  }, []);
+
+  const initMap = () => {
+    if (!MapRef.current) {
+      return;
+    }
+    const container = MapRef.current;
+    const options = {
+      center: new window.kakao.maps.LatLng(37.5665, 126.978),
+      level: 3,
+    };
+
+    const map = new window.kakao.maps.Map(container, options);
+
+    // const markerPosition = new window.kakao.maps.LatLng(37.5665, 126.978);
+    // const marker = new window.kakao.maps.Marker({
+    //   position: markerPosition,
+    // });
+    // marker.setMap(map);
+  };
+
   return (
     <div className="store-location-wrap flex w-full max-sm:flex-col justify-between">
       <div className="address-container flex flex-col">
@@ -23,7 +74,12 @@ export default () => {
         </div>
       </div>
 
-      <div className="map-container w-full ">Map</div>
+      <div className="map-container w-full" ref={MapRef}>
+        {/* <Script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce6981d1edbff9b162ff07faef0c58f"
+        ></Script> */}
+      </div>
 
       <div className="location-list-container">
         <LocationItem></LocationItem>
