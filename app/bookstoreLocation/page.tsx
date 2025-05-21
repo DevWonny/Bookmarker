@@ -65,11 +65,12 @@ export default () => {
 
   return (
     <div className="store-location-wrap flex w-full max-sm:flex-col justify-between">
-      <div className="address-container flex flex-col">
+      {/* //! disabled -> 위 필터 선택 아무것도 안되어 있을 경우 */}
+      {/* // ! 추후 방법을 생각한 후에 구현 하기! */}
+      {/* <div className="address-container flex flex-col">
         <AddressFilter type={true}></AddressFilter>
         <AddressFilter type={false}></AddressFilter>
         <div className="address-button-container flex">
-          {/* //! disabled -> 위 필터 선택 아무것도 안되어 있을 경우 */}
           <button type="button" className="reset-btn">
             초기화
           </button>
@@ -77,14 +78,9 @@ export default () => {
             확인
           </button>
         </div>
-      </div>
+      </div> */}
 
-      <div className="map-container w-full" ref={MapRef}>
-        {/* <Script
-          type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce6981d1edbff9b162ff07faef0c58f"
-        ></Script> */}
-      </div>
+      <div className="map-container w-full" ref={MapRef}></div>
 
       <div className="location-list-container">
         <LocationItem></LocationItem>
