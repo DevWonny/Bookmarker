@@ -141,7 +141,10 @@ export default () => {
         </div>
 
         <div className="list-item-container">
-          {bookList && bookList.length > 0 ? (
+          {bookList &&
+          bookList.length > 0 &&
+          bannerList &&
+          bannerList.length > 0 ? (
             bookList.map((item, index) => (
               <ListItem
                 key={`main-book-list-item-${index}`}
