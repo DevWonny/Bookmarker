@@ -7,6 +7,8 @@ import LocationItem from "@/components/bookstoreLocation/locationItem";
 
 // service
 import { AddressTest } from "@/services/address";
+// Map Initialize Date
+import { InitLocation } from "@/utils/initLocation";
 
 // style
 import "@/styles/pages/bookstoreLocation.scss";
