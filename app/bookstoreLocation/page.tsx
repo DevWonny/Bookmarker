@@ -41,23 +41,26 @@ export default () => {
     };
   }, []);
 
-  const initMap = () => {
+  const initMap = async () => {
     if (!MapRef.current) {
       return;
     }
+
+    const { lat: initLat, lng: initLng } = await InitLocation();
+
     const container = MapRef.current;
     const options = {
-      center: new window.kakao.maps.LatLng(37.5665, 126.978),
+      center: new window.kakao.maps.LatLng(initLat, initLng),
       level: 3,
     };
 
     const map = new window.kakao.maps.Map(container, options);
 
-    // const markerPosition = new window.kakao.maps.LatLng(37.5665, 126.978);
-    // const marker = new window.kakao.maps.Marker({
-    //   position: markerPosition,
-    // });
-    // marker.setMap(map);
+    const markerPosition = new window.kakao.maps.LatLng(initLat, initLng);
+    const marker = new window.kakao.maps.Marker({
+      position: markerPosition,
+    });
+    marker.setMap(map);
   };
 
   return (
