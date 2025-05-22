@@ -1,6 +1,6 @@
 // 서점 위치 페이지
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 // component
 import AddressFilter from "@/components/bookstoreLocation/addressFilter";
 import LocationItem from "@/components/bookstoreLocation/locationItem";
@@ -13,6 +13,15 @@ import { InitLocation } from "@/utils/initLocation";
 // style
 import "@/styles/pages/bookstoreLocation.scss";
 
+// interface
+interface PlaceInfo {
+  id: string;
+  placeName: string;
+  addressName: string;
+  phone: string;
+  distance: string;
+}
+
 declare global {
   interface Window {
     kakao: any;
@@ -20,7 +29,10 @@ declare global {
 }
 
 export default () => {
+  // ref
   const MapRef = useRef(null);
+  // state
+  const [place, setPlace] = useState<PlaceInfo[]>([]);
 
   useEffect(() => {
     if (window.kakao && window.kakao.maps) {
@@ -30,15 +42,16 @@ export default () => {
 
     const script = document.createElement("script");
     script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce6981d1edbff9b162ff07faef0c58f&autoload=false";
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce6981d1edbff9b162ff07faef0c58f&autoload=false&libraries=services";
     script.async = true;
-    document.head.appendChild(script);
 
     script.onload = () => {
       window.kakao.maps.load(() => {
         initMap();
       });
     };
+
+    document.head.appendChild(script);
   }, []);
 
   const initMap = async () => {
@@ -51,16 +64,45 @@ export default () => {
     const container = MapRef.current;
     const options = {
       center: new window.kakao.maps.LatLng(initLat, initLng),
-      level: 3,
+      level: 5,
+      draggable: false,
     };
 
     const map = new window.kakao.maps.Map(container, options);
+    const ps = new window.kakao.maps.services.Places(map);
 
+    // 반경 5KM
+    const radius = 5000;
+    const center = map.getCenter();
+    const circle = new window.kakao.maps.Circle({
+      center,
+      radius,
+      strokeWeight: 0,
+      fillOpacity: 0,
+    });
+
+    ps.keywordSearch(
+      "서점",
+      (data: any[], status: string) => {
+        if (status === window.kakao.maps.services.Status.OK) {
+          setPlace(data);
+          data.forEach((place: any) => {
+            const marker = new window.kakao.maps.Marker({
+              map,
+              position: new window.kakao.maps.LatLng(place.y, place.x),
+            });
+          });
+        }
+      },
+      { location: center, radius }
+    );
+
+    // 유저 위치
     const markerPosition = new window.kakao.maps.LatLng(initLat, initLng);
-    const marker = new window.kakao.maps.Marker({
+    const userMarker = new window.kakao.maps.Marker({
       position: markerPosition,
     });
-    marker.setMap(map);
+    userMarker.setMap(map);
   };
 
   return (
