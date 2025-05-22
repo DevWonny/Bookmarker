@@ -99,11 +99,20 @@ export default () => {
 
     // 유저 위치
     const markerPosition = new window.kakao.maps.LatLng(initLat, initLng);
+    const imageSrc =
+      "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png"; // 원하는 색상의 마커 이미지
+    const imageSize = new window.kakao.maps.Size(24, 35); // 이미지 크기
+    const markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
     const userMarker = new window.kakao.maps.Marker({
       position: markerPosition,
+      image: markerImage,
     });
     userMarker.setMap(map);
   };
+
+  useEffect(() => {
+    console.log("🚀 ~ place:", place);
+  }, [place]);
 
   return (
     <div className="store-location-wrap flex w-full max-sm:flex-col justify-between">
