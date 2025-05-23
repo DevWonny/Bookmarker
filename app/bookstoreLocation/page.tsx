@@ -16,8 +16,8 @@ import "@/styles/pages/bookstoreLocation.scss";
 // interface
 interface PlaceInfo {
   id: string;
-  placeName: string;
-  addressName: string;
+  place_name: string;
+  address_name: string;
   phone: string;
   distance: string;
 }
@@ -33,6 +33,8 @@ export default () => {
   const MapRef = useRef(null);
   // state
   const [place, setPlace] = useState<PlaceInfo[]>([]);
+  const [markers, setMarkers] = useState<any>({});
+  const [map, setMap] = useState(null);
 
   useEffect(() => {
     if (window.kakao && window.kakao.maps) {
@@ -69,11 +71,13 @@ export default () => {
     };
 
     const map = new window.kakao.maps.Map(container, options);
+    setMap(map);
     const ps = new window.kakao.maps.services.Places(map);
 
     // 반경 5KM
     const radius = 5000;
     const center = map.getCenter();
+    const newMarkers: any = {};
 
     ps.keywordSearch(
       "서점",
@@ -88,7 +92,11 @@ export default () => {
               map,
               position: new window.kakao.maps.LatLng(place.y, place.x),
             });
+
+            newMarkers[place.id] = marker;
           });
+
+          setMarkers(newMarkers);
         }
       },
       { location: center, radius }
@@ -109,8 +117,20 @@ export default () => {
 
   // Location Item Mouse Over Event
   const handlerMouseOver = (id: string) => {
-    const findItem = place.find((item) => item.id === id);
-    console.log(findItem);
+    const marker = markers[id];
+    const findPlace = place.find((item) => item.id === id);
+    if (marker && map && findPlace) {
+      const infoWindow = new window.kakao.maps.InfoWindow({
+        content: `<div style="padding : 5px; font-size : 8px;">${findPlace.place_name}</div>`,
+      });
+
+      infoWindow.open(map, marker);
+      marker.setZIndex(10);
+    }
+  };
+
+  const handleMouseLeave = (id: string) => {
+    const marker = markers[id];
   };
 
   return (
@@ -138,7 +158,8 @@ export default () => {
             <LocationItem
               key={`bookstore-location-item-${data.id}`}
               item={data}
-              onHover={handlerMouseOver}
+              onOver={handlerMouseOver}
+              onLeave={handleMouseLeave}
             />
           ))}
       </div>
