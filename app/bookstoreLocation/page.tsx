@@ -107,10 +107,6 @@ export default () => {
     userMarker.setMap(map);
   };
 
-  useEffect(() => {
-    console.log("🚀 ~ place:", place);
-  }, [place]);
-
   return (
     <div className="store-location-wrap flex w-full max-sm:flex-col justify-between">
       {/* //! disabled -> 위 필터 선택 아무것도 안되어 있을 경우 */}
@@ -132,8 +128,11 @@ export default () => {
 
       <div className="location-list-container">
         {place.length > 0 &&
-          place.map((item) => (
-            <LocationItem key={`bookstore-location-item-${item.id}`} />
+          place.map((data: any) => (
+            <LocationItem
+              key={`bookstore-location-item-${data.id}`}
+              item={data}
+            />
           ))}
       </div>
     </div>

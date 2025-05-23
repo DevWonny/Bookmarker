@@ -1,7 +1,20 @@
 // style
 import "@/styles/components/locationItem.scss";
 
-export default function LocationItem() {
+// interface
+interface LocationItemData {
+  addressName: string;
+  distance: string;
+  phone: string;
+  placeName: string;
+  placeUrl: string;
+  roadAddress: string;
+  id: string;
+}
+
+export default function LocationItem({ item }: { item: LocationItemData }) {
+  console.log("🚀 ~ LocationItem ~ item:", item);
+
   return (
     <div className="location-item-container flex flex-col ">
       <div className="title-container flex items-center">
