@@ -12,9 +12,12 @@ interface LocationItemData {
   id: string;
 }
 
-export default function LocationItem({ item }: { item: LocationItemData }) {
-  console.log("🚀 ~ LocationItem ~ item:", item);
+interface LocationItemProps {
+  item: LocationItemData;
+  onHover: (id: string) => void;
+}
 
+export default function LocationItem({ item, onHover }: LocationItemProps) {
   const distanceConvert = () => {
     const { distance } = item;
     const convertNum = parseInt(distance);
@@ -22,7 +25,10 @@ export default function LocationItem({ item }: { item: LocationItemData }) {
   };
 
   return (
-    <div className="location-item-container flex flex-col ">
+    <div
+      className="location-item-container flex flex-col "
+      onMouseOver={() => onHover(item.id)}
+    >
       <div className="title-container flex items-center">
         <div className="icon"></div>
         <div className="title">{item.place_name}</div>

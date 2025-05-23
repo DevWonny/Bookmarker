@@ -107,6 +107,12 @@ export default () => {
     userMarker.setMap(map);
   };
 
+  // Location Item Mouse Over Event
+  const handlerMouseOver = (id: string) => {
+    const findItem = place.find((item) => item.id === id);
+    console.log(findItem);
+  };
+
   return (
     <div className="store-location-wrap flex w-full max-sm:flex-col justify-between">
       {/* //! disabled -> 위 필터 선택 아무것도 안되어 있을 경우 */}
@@ -132,6 +138,7 @@ export default () => {
             <LocationItem
               key={`bookstore-location-item-${data.id}`}
               item={data}
+              onHover={handlerMouseOver}
             />
           ))}
       </div>
