@@ -17,6 +17,8 @@ export default function LocationItem({ item }: { item: LocationItemData }) {
 
   const distanceConvert = () => {
     const { distance } = item;
+    const convertNum = parseInt(distance);
+    return `${(convertNum / 1000).toFixed(2)} Km`;
   };
 
   return (
@@ -29,7 +31,7 @@ export default function LocationItem({ item }: { item: LocationItemData }) {
       <div className="detail-container flex flex-col ">
         <p className="address">{item.road_address_name}</p>
         <p className="phone-number">{item.phone}</p>
-        <p className="distance">{item.distance}</p>
+        <p className="distance">{distanceConvert()}</p>
       </div>
     </div>
   );
