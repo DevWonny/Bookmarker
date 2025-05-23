@@ -31,6 +31,7 @@ declare global {
 export default () => {
   // ref
   const MapRef = useRef(null);
+  const infoWindowRef = useRef<any>(null);
   // state
   const [place, setPlace] = useState<PlaceInfo[]>([]);
   const [markers, setMarkers] = useState<any>({});
@@ -60,7 +61,7 @@ export default () => {
     if (!MapRef.current) {
       return;
     }
-
+    infoWindowRef.current = new window.kakao.maps.InfoWindow();
     const { lat: initLat, lng: initLng } = await InitLocation();
 
     const container = MapRef.current;
@@ -119,18 +120,22 @@ export default () => {
   const handlerMouseOver = (id: string) => {
     const marker = markers[id];
     const findPlace = place.find((item) => item.id === id);
-    if (marker && map && findPlace) {
-      const infoWindow = new window.kakao.maps.InfoWindow({
-        content: `<div style="padding : 5px; font-size : 8px;">${findPlace.place_name}</div>`,
-      });
+    if (marker && map && findPlace && infoWindowRef.current) {
+      infoWindowRef.current.setContent(
+        `<div style="padding : 5px; font-size : 8px;">${findPlace.place_name}</div>`
+      );
 
-      infoWindow.open(map, marker);
+      infoWindowRef.current.open(map, marker);
       marker.setZIndex(10);
     }
   };
 
   const handleMouseLeave = (id: string) => {
     const marker = markers[id];
+    if (marker && infoWindowRef.current) {
+      infoWindowRef.current.close();
+      marker.setZIndex(0);
+    }
   };
 
   return (
