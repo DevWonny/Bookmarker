@@ -74,18 +74,15 @@ export default () => {
     // 반경 5KM
     const radius = 5000;
     const center = map.getCenter();
-    const circle = new window.kakao.maps.Circle({
-      center,
-      radius,
-      strokeWeight: 0,
-      fillOpacity: 0,
-    });
 
     ps.keywordSearch(
       "서점",
       (data: any[], status: string) => {
         if (status === window.kakao.maps.services.Status.OK) {
-          setPlace(data);
+          const placeArray = data.sort(
+            (prev, next) => prev.distance - next.distance
+          );
+          setPlace(placeArray);
           data.forEach((place: any) => {
             const marker = new window.kakao.maps.Marker({
               map,
@@ -134,7 +131,10 @@ export default () => {
       <div className="map-container w-full" ref={MapRef}></div>
 
       <div className="location-list-container">
-        <LocationItem></LocationItem>
+        {place.length > 0 &&
+          place.map((item) => (
+            <LocationItem key={`bookstore-location-item-${item.id}`} />
+          ))}
       </div>
     </div>
   );
