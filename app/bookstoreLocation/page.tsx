@@ -128,7 +128,7 @@ export default () => {
         </div>
       </div> */}
 
-      <div className="map-container w-full" ref={MapRef}></div>
+      <div className="map-container" ref={MapRef}></div>
 
       <div className="location-list-container">
         {place.length > 0 &&
