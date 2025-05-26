@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+// service
+import { BookSearch } from "@/services/book";
 // style
 import "@/styles/components/header.scss";
 
@@ -18,6 +20,17 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
 
   // url path check
   const pathname = usePathname();
+
+  // function
+  const onSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (search && search.trim()) {
+        console.log("search - ", search);
+      } else {
+        return;
+      }
+    }
+  };
 
   return (
     <div className="bg-primary header-container flex justify-between items-center w-full">
@@ -56,6 +69,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="검색어를 입력하세요."
+            onKeyDown={onSearch}
           />
         </div>
       </div>
