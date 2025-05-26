@@ -26,6 +26,8 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
     if (e.key === "Enter") {
       if (search && search.trim()) {
         console.log("search - ", search);
+        const test = BookSearch(search);
+        console.log("🚀 ~ onSearch ~ test:", test);
       } else {
         return;
       }
