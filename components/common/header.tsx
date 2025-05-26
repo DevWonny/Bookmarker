@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 // service
@@ -17,17 +17,24 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   // state
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const isSearching = useRef(false);
 
   // url path check
   const pathname = usePathname();
 
   // function
-  const onSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const onSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       if (search && search.trim()) {
-        console.log("search - ", search);
-        const test = BookSearch(search);
-        console.log("🚀 ~ onSearch ~ test:", test);
+        if (isSearching.current) return;
+        isSearching.current = true;
+        try {
+          // 전역 관리 들어가야함!
+          const searchList = await BookSearch(search);
+          console.log("search List - ", searchList);
+        } finally {
+          isSearching.current = false;
+        }
       } else {
         return;
       }
