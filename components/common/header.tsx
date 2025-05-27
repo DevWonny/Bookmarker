@@ -35,6 +35,10 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
           // 전역 관리 들어가야함!
           const searchList = await BookSearch(search);
           console.log("search List - ", searchList);
+          setKeyword(search);
+          if (searchList && searchList.length > 0) {
+            setBookList(searchList);
+          }
         } finally {
           isSearching.current = false;
         }
