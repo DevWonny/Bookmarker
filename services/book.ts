@@ -5,7 +5,12 @@ const key = process.env.NEXT_PUBLIC_ALADIN_KEY;
 export const BookSearch = async (query: string) => {
   try {
     const res = await axios.get('/api/aladin/bookSearch', { params: { ttbkey: key, query } });
-    return res;
+    const { status, data } = res;
+    if (status !== 200) {
+      return 'Book Search Error';
+    }
+
+    return data.item
   } catch (err) {
     console.error('err - ', err)
   }
