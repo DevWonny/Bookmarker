@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 // service
 import { BookSearch } from "@/services/book";
+// store
+import { useBookSearch } from "@/stores/bookSerach";
 // style
 import "@/styles/components/header.scss";
 
@@ -18,6 +20,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
+  const { setKeyword, setBookList } = useBookSearch();
 
   // url path check
   const pathname = usePathname();

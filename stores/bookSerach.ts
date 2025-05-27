@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 interface SearchState {
   keyword: string;
@@ -7,9 +8,14 @@ interface SearchState {
   setBookList: (bookList: any[]) => void;
 }
 
-export const useBookSearch = create<SearchState>((set) => ({
-  keyword: '',
-  bookList: [],
-  setKeyword: (keyword) => set({ keyword }),
-  setBookList: (bookList) => set({ bookList })
-}))
+export const useBookSearch = create<SearchState>()(
+  devtools(
+    (set) => ({
+      keyword: '',
+      bookList: [],
+      setKeyword: (keyword) => set({ keyword }),
+      setBookList: (bookList) => set({ bookList })
+    })
+  ),
+)
+
