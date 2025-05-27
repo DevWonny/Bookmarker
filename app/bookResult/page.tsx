@@ -16,7 +16,7 @@ export default () => {
         !isData && "flex items-center justify-center h-screen"
       }`}
     >
-      {isData && <ListItem />}
+      {/* {isData && <ListItem type='result' />} */}
 
       {!isData && (
         <div className="warning-box flex flex-col items-center">

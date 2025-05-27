@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 // service
 import { BookSearch } from "@/services/book";
 // store
@@ -16,14 +16,15 @@ interface HeaderType {
 }
 
 export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
+  // url path check
+  const pathname = usePathname();
+  // router
+  const router = useRouter();
   // state
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
-
-  // url path check
-  const pathname = usePathname();
 
   // function
   const onSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,6 +42,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
           }
         } finally {
           isSearching.current = false;
+          router.push("/bookResult");
         }
       } else {
         return;
