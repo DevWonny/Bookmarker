@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 // service
@@ -53,6 +53,15 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
     }
   };
 
+  // useEffect
+  useEffect(() => {
+    if (pathname !== "/bookResult") {
+      setSearch("");
+      setKeyword("");
+      setBookList([]);
+    }
+  }, [pathname]);
+
   return (
     <div className="bg-primary header-container flex justify-between items-center w-full">
       {/*  left -> 로고 + 서점 위치 페이지 버튼 + 검색  */}
@@ -80,7 +89,6 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
             }}
             className="text-sm"
           >
-            <option value="all">통합 검색</option>
             <option value="title">제목</option>
             <option value="author">저자</option>
           </select>
