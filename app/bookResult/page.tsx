@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useBookSearch } from "@/stores/bookSearch";
 // component
 import ListItem from "@/components/common/listItem";
+// type
+import { BookItem } from "@/types/main";
 // style
 import "@/styles/pages/bookResult.scss";
 
@@ -29,7 +31,16 @@ export default () => {
         !isData && "flex items-center justify-center h-screen"
       }`}
     >
-      {/* {isData && <ListItem type='result' />} */}
+      {isData &&
+        bookList &&
+        bookList.length > 0 &&
+        bookList.map((book, index) => (
+          <ListItem
+            key={`book-result-list-item-${index}`}
+            type="result"
+            item={book}
+          />
+        ))}
 
       {!isData && (
         <div className="warning-box flex flex-col items-center">
