@@ -35,14 +35,17 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
         try {
           // 전역 관리 들어가야함!
           const searchList = await BookSearch(search);
-          console.log("search List - ", searchList);
           setKeyword(search);
           if (searchList && searchList.length > 0) {
             setBookList(searchList);
+          } else {
+            setBookList([]);
           }
         } finally {
           isSearching.current = false;
-          router.push("/bookResult");
+          if (pathname !== "/bookResult") {
+            router.push("/bookResult");
+          }
         }
       } else {
         return;

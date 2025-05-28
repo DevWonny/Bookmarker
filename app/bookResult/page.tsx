@@ -14,16 +14,20 @@ import "@/styles/pages/bookResult.scss";
 export default () => {
   // * 검색 결과 데이터가 있을 경우에는 리스트를, 없을 경우에는 문구 표출
   const [isData, setIsData] = useState(false);
+  const [itemList, setItemList] = useState<any>([]);
   // store state
   const { keyword, bookList } = useBookSearch();
 
+  // useEffect
   useEffect(() => {
     if (bookList && bookList.length > 0) {
+      setItemList(bookList);
       setIsData(true);
     } else {
+      setItemList([]);
       setIsData(false);
     }
-  }, []);
+  }, [bookList]);
 
   return (
     <div
@@ -32,9 +36,8 @@ export default () => {
       }`}
     >
       {isData &&
-        bookList &&
-        bookList.length > 0 &&
-        bookList.map((book, index) => (
+        itemList.length > 0 &&
+        itemList.map((book: any, index: number) => (
           <ListItem
             key={`book-result-list-item-${index}`}
             type="result"
