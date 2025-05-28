@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 // service
 import { BookSearch } from "@/services/book";
 // store
-import { useBookSearch } from "@/stores/bookSerach";
+import { useBookSearch } from "@/stores/bookSearch";
 // style
 import "@/styles/components/header.scss";
 
