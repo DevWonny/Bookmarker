@@ -23,6 +23,11 @@ export default function ListItem({ type, item }: ListItemProps) {
     return toNumberPrice.toLocaleString();
   };
 
+  // image 태그 지우기
+  const removeImgTag = (tag: string): string => {
+    return tag.replace(/<img[^>]*>/gi, "");
+  };
+
   return (
     <div className="item flex flex-row ">
       {type === "rank" && (
@@ -54,7 +59,9 @@ export default function ListItem({ type, item }: ListItemProps) {
           item.author
         )} | ${item.publisher} | ${item.pubDate}`}</p>
         <p className="book-description text-base font-normal">
-          {item.description}
+          {type === "result"
+            ? removeImgTag(item.description)
+            : item.description}
         </p>
         <p className="book-category text-xs font-medium">{item.categoryName}</p>
       </div>
