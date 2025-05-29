@@ -58,11 +58,17 @@ export default function ListItem({ type, item }: ListItemProps) {
         <p className="book-publish text-sm font-medium">{`${RemoveParentheses(
           item.author
         )} | ${item.publisher} | ${item.pubDate}`}</p>
-        <p className="book-description text-base font-normal">
-          {type === "result"
-            ? removeImgTag(item.description)
-            : item.description}
-        </p>
+
+        {type === "result" ? (
+          <p
+            className="book-description text-base font-normal"
+            dangerouslySetInnerHTML={{ __html: removeImgTag(item.description) }}
+          ></p>
+        ) : (
+          <p className="book-description text-base font-normal">
+            {item.description}
+          </p>
+        )}
         <p className="book-category text-xs font-medium">{item.categoryName}</p>
       </div>
 
