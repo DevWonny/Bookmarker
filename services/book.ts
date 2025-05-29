@@ -4,7 +4,7 @@ const key = process.env.NEXT_PUBLIC_ALADIN_KEY;
 // 책 검색
 export const BookSearch = async (query: string) => {
   try {
-    const res = await axios.get('/api/aladin/bookSearch', { params: { ttbkey: key, query } });
+    const res = await axios.get('/api/aladin/bookSearch', { params: { ttbkey: key, query, cover: 'MidBig' } });
     const { status, data } = res;
     if (status !== 200) {
       return 'Book Search Error';
