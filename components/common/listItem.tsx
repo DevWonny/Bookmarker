@@ -4,6 +4,7 @@
 import { BookItem } from "@/types/main";
 // util
 import { RemoveHyphen, RemoveParentheses } from "@/utils/removeText";
+import dayjs from "dayjs";
 // icon
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
@@ -57,7 +58,9 @@ export default function ListItem({ type, item }: ListItemProps) {
         </h1>
         <p className="book-publish text-sm font-medium">{`${RemoveParentheses(
           item.author
-        )} | ${item.publisher} | ${item.pubDate}`}</p>
+        )} | ${item.publisher} | ${dayjs(item.pubDate).format(
+          "YYYY-MM-DD"
+        )}`}</p>
 
         {type === "result" ? (
           <p
