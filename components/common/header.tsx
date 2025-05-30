@@ -22,6 +22,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const router = useRouter();
   // state
   const [filter, setFilter] = useState("title");
+  const [showFilter, setShowFilter] = useState(false);
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
@@ -51,6 +52,14 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
         return;
       }
     }
+  };
+
+  const onFilterSelect = (type: string) => {
+    setShowFilter(false);
+    if (type === filter) {
+      return;
+    }
+    setFilter(type);
   };
 
   // useEffect
@@ -93,6 +102,25 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
             <option value="title">제목</option>
             <option value="author">저자</option>
           </select>
+
+          <div className="search-filter-container text-sm">
+            <button
+              type="button"
+              className="search-filter-btn"
+              onClick={() =>
+                showFilter ? setShowFilter(false) : setShowFilter(true)
+              }
+            >
+              {filter === "title" ? "제목" : "저자"}
+            </button>
+
+            {showFilter && (
+              <ul className="search-filter-list">
+                <li onClick={() => onFilterSelect("title")}>제목</li>
+                <li onClick={() => onFilterSelect("author")}>저자</li>
+              </ul>
+            )}
+          </div>
 
           <input
             type="text"
