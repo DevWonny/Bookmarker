@@ -92,7 +92,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
         </Link>
 
         <div className="search-container flex">
-          <select
+          {/* <select
             value={filter}
             onChange={(e) => {
               setFilter(e.target.value);
@@ -101,12 +101,11 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
           >
             <option value="title">제목</option>
             <option value="author">저자</option>
-          </select>
+          </select> */}
 
           <div className="search-filter-container text-sm">
             <button
               type="button"
-              className="search-filter-btn"
               onClick={() =>
                 showFilter ? setShowFilter(false) : setShowFilter(true)
               }
