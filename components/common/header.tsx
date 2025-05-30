@@ -21,7 +21,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   // router
   const router = useRouter();
   // state
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("title");
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
@@ -34,7 +34,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
         isSearching.current = true;
         try {
           // 전역 관리 들어가야함!
-          const searchList = await BookSearch(search);
+          const searchList = await BookSearch(search, filter);
           setKeyword(search);
           if (searchList && searchList.length > 0) {
             setBookList(searchList);

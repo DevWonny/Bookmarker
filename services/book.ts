@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const key = process.env.NEXT_PUBLIC_ALADIN_KEY;
 // 책 검색
-export const BookSearch = async (query: string) => {
+export const BookSearch = async (query: string, queryType: string) => {
   try {
-    const res = await axios.get('/api/aladin/bookSearch', { params: { ttbkey: key, query, cover: 'MidBig' } });
+    const res = await axios.get('/api/aladin/bookSearch', { params: { ttbkey: key, query, cover: 'MidBig', queryType } });
     const { status, data } = res;
     if (status !== 200) {
       return 'Book Search Error';
