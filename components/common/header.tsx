@@ -23,6 +23,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   // state
   const [filter, setFilter] = useState("title");
   const [showFilter, setShowFilter] = useState(false);
+  const searchFilterContainerRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
@@ -62,8 +63,19 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
     setFilter(type);
   };
 
+  // 검색 필터 영역 외 클릭 시
+  const onClickOutSide = (event: MouseEvent) => {
+    if (
+      searchFilterContainerRef.current &&
+      !searchFilterContainerRef.current.contains(event.target as Node)
+    ) {
+      setShowFilter(false);
+    }
+  };
+
   // useEffect
   useEffect(() => {
+    setShowFilter(false);
     if (pathname !== "/bookResult") {
       setSearch("");
       setFilter("title");
@@ -71,6 +83,13 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
       setBookList([]);
     }
   }, [pathname]);
+
+  useEffect(() => {
+    document.addEventListener("click", onClickOutSide);
+    return () => {
+      document.removeEventListener("click", onClickOutSide);
+    };
+  }, []);
 
   return (
     <div className="bg-primary header-container flex justify-between items-center w-full">
@@ -103,7 +122,10 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
             <option value="author">저자</option>
           </select> */}
 
-          <div className="search-filter-container text-sm">
+          <div
+            ref={searchFilterContainerRef}
+            className="search-filter-container text-sm"
+          >
             <button
               type="button"
               onClick={() =>
