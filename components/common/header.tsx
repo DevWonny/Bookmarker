@@ -57,6 +57,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   useEffect(() => {
     if (pathname !== "/bookResult") {
       setSearch("");
+      setFilter("title");
       setKeyword("");
       setBookList([]);
     }
