@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { BookSearch } from "@/services/book";
 // store
 import { useBookSearch } from "@/stores/bookSearch";
+import { useAuth } from "@/stores/auth";
 // style
 import "@/styles/components/header.scss";
 
@@ -27,6 +28,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
+  const { isGetUser } = useAuth();
 
   // function
   const onSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -111,17 +113,6 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
         </Link>
 
         <div className="search-container flex">
-          {/* <select
-            value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-            }}
-            className="text-sm"
-          >
-            <option value="title">제목</option>
-            <option value="author">저자</option>
-          </select> */}
-
           <div
             ref={searchFilterContainerRef}
             className="search-filter-container text-sm"
@@ -155,21 +146,24 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
 
       {/* right -> 로그인 + 회원가입 버튼 + 찜목록 버튼 */}
       <div className="right-container">
-        <div className="default-container flex">
-          {/* //! 추후 분기 처리 필요, 로그인 시에는 해당 영역 안보이게 */}
-          <button
-            className="login-btn text-lg max-xl:text-base max-md:text-sm"
-            onClick={onLoginClick}
-          >
-            로그인
-          </button>
-          <button
-            className="signup-btn text-lg max-xl:text-base max-md:text-sm"
-            onClick={onSignupClick}
-          >
-            회원가입
-          </button>
-        </div>
+        {isGetUser ? (
+          <div>GetUser!</div>
+        ) : (
+          <div className="default-container flex">
+            <button
+              className="login-btn text-lg max-xl:text-base max-md:text-sm"
+              onClick={onLoginClick}
+            >
+              로그인
+            </button>
+            <button
+              className="signup-btn text-lg max-xl:text-base max-md:text-sm"
+              onClick={onSignupClick}
+            >
+              회원가입
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
