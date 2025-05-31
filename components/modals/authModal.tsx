@@ -10,7 +10,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 interface AuthModalType {
   isLoginShow?: boolean;
   isSignupShow?: boolean;
-  onCloseClick: (e: any) => void;
+  onCloseClick: () => void;
 }
 
 export default function AuthModal({
@@ -34,7 +34,7 @@ export default function AuthModal({
     >
       <CloseOutlinedIcon className="close-icon" onClick={onCloseClick} />
       {isLoginShow && <LoginForm />}
-      {isSignupShow && <SignupForm />}
+      {isSignupShow && <SignupForm onSuccess={onCloseClick} />}
     </div>
   );
 }
