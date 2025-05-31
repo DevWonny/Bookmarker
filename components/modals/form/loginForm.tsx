@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+// store
+import { useAuth } from "@/stores/auth";
 
 // component
 import Input from "@/components/modals/form/input";
@@ -19,6 +21,7 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const { setIsGetUser } = useAuth();
 
   useEffect(() => {
     if (idValue && pwValue) {
@@ -42,6 +45,11 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
       const {
         data: { user },
       } = await supabase.auth.getUser();
+      if (user) {
+        setIsGetUser(true);
+      } else {
+        setIsGetUser(false);
+      }
       onSuccess();
     }
   };
