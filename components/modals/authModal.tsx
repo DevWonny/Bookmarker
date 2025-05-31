@@ -33,7 +33,7 @@ export default function AuthModal({
       onClick={(e) => e.stopPropagation()}
     >
       <CloseOutlinedIcon className="close-icon" onClick={onCloseClick} />
-      {isLoginShow && <LoginForm />}
+      {isLoginShow && <LoginForm onSuccess={onCloseClick} />}
       {isSignupShow && <SignupForm onSuccess={onCloseClick} />}
     </div>
   );

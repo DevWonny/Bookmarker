@@ -10,7 +10,7 @@ import "@/styles/components/modals/signupForm.scss";
 
 // type
 type FormData = {
-  id: string;
+  email: string;
   password: string;
 };
 
@@ -32,10 +32,9 @@ export default function SignupForm({ onSuccess }: { onSuccess: () => void }) {
   // function
   const onSignup = async (data: FormData) => {
     const { error } = await supabase.auth.signUp({
-      email: data.id,
+      email: data.email,
       password: data.password,
     });
-    console.log("🚀 ~ onSignup ~ error:", error);
     if (error) {
       alert(error.message);
     } else {
@@ -49,7 +48,7 @@ export default function SignupForm({ onSuccess }: { onSuccess: () => void }) {
       className="signup-form-wrap flex flex-col"
       onSubmit={(e) => {
         e.preventDefault();
-        onSignup({ id: idValue, password: pwValue });
+        onSignup({ email: idValue, password: pwValue });
       }}
     >
       <div className="form-container flex flex-col">
