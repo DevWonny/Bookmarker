@@ -26,6 +26,8 @@ export default function Input({
       setLabelText("pw");
     } else if (label === "passwordCheck") {
       setLabelText("pw 확인");
+    } else if (label === "nickname") {
+      setLabelText("닉네임");
     } else {
       setLabelText(label);
     }

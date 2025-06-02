@@ -19,6 +19,7 @@ export default function SignupForm({ onSuccess }: { onSuccess: () => void }) {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [pwCheckValue, setPwCheckValue] = useState("");
+  const [nickname, setNickname] = useState("");
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
@@ -80,6 +81,13 @@ export default function SignupForm({ onSuccess }: { onSuccess: () => void }) {
           onChange={(e) => {
             setPwCheckValue(e.target.value);
           }}
+        />
+
+        {/* // * Nick Name */}
+        <Input
+          label="nickname"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
         />
       </div>
 
