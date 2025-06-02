@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { supabase } from "@/lib/supabase";
+// store
+import { useAuth } from "@/stores/auth";
 
 // component
 import Header from "@/components/common/header";
@@ -16,6 +19,7 @@ export default function LayoutClient({
   const [isSignupClick, setIsSignupClick] = useState(false);
   const [isVisibleTopBtn, setIsVisibleTopBtn] = useState(false);
   const pathname = usePathname();
+  const { session, setSession } = useAuth();
 
   const onModalClose = () => {
     setIsLoginClick(false);
@@ -24,6 +28,13 @@ export default function LayoutClient({
 
   const onScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const onGetSession = async () => {
+    const { data } = await supabase.auth.getSession();
+    if (data) {
+      setSession(data.session);
+    }
   };
 
   useEffect(() => {
@@ -35,8 +46,19 @@ export default function LayoutClient({
       }
     };
 
+    onGetSession();
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      }
+    );
+
     window.addEventListener("scroll", onVisibility);
-    return () => window.removeEventListener("scroll", onVisibility);
+    return () => {
+      window.removeEventListener("scroll", onVisibility);
+      listener.subscription.unsubscribe();
+    };
   }, []);
 
   useEffect(() => {

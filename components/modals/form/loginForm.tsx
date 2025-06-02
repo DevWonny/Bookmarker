@@ -21,7 +21,7 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const { setIsGetUser, setGetDisplayName } = useAuth();
+  const { setIsGetUser, setGetDisplayName, setSession } = useAuth();
 
   useEffect(() => {
     if (idValue && pwValue) {
@@ -32,22 +32,21 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   }, [idValue, pwValue]);
 
   // function
-  const onSignIn = async (data: FormData) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
+  const onSignIn = async (formData: FormData) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
     });
 
     if (error) {
       alert(error.message);
     } else {
       alert("로그인 성공!");
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user) {
+      setSession(data.session);
+      const { data: userData } = await supabase.auth.getUser();
+      if (userData.user) {
         setIsGetUser(true);
-        const { user_metadata } = user;
+        const { user_metadata } = userData.user;
         if (user_metadata) {
           setGetDisplayName(user_metadata.displayName);
         }

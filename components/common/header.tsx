@@ -88,6 +88,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
 
   useEffect(() => {
     document.addEventListener("click", onClickOutSide);
+    console.log("🚀 ~ Header ~ getDisplayName:", getDisplayName);
     return () => {
       document.removeEventListener("click", onClickOutSide);
     };
