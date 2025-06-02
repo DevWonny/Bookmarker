@@ -28,7 +28,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
-  const { isGetUser } = useAuth();
+  const { isGetUser, getDisplayName } = useAuth();
 
   // function
   const onSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -147,7 +147,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
       {/* right -> 로그인 + 회원가입 버튼 + 찜목록 버튼 */}
       <div className="right-container">
         {isGetUser ? (
-          <div>GetUser!</div>
+          <div>{getDisplayName}</div>
         ) : (
           <div className="default-container flex">
             <button

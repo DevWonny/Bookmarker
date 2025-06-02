@@ -21,7 +21,7 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const { setIsGetUser } = useAuth();
+  const { setIsGetUser, setGetDisplayName } = useAuth();
 
   useEffect(() => {
     if (idValue && pwValue) {
@@ -47,8 +47,13 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
       } = await supabase.auth.getUser();
       if (user) {
         setIsGetUser(true);
+        const { user_metadata } = user;
+        if (user_metadata) {
+          setGetDisplayName(user_metadata.displayName);
+        }
       } else {
         setIsGetUser(false);
+        setGetDisplayName("");
       }
       onSuccess();
     }
