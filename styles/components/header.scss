@@ -80,6 +80,20 @@ div.header-container {
 
   div.right-container {
     padding-right: 3.125rem;
+    div.sign-in-container {
+      gap: 3.125rem;
+      p {
+        cursor: default;
+      }
+      button {
+        cursor: pointer;
+        &:hover {
+          color: $point-color;
+          font-weight: 600;
+        }
+      }
+    }
+
     div.default-container {
       gap: 3.125rem;
 

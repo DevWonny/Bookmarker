@@ -160,11 +160,11 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
       <div className="right-container flex">
         {session ? (
           <div className="sign-in-container flex">
-            <p className="wish-btn">찜 목록</p>
-            <p className="display-name">
+            <button className="wish-btn max-xl:text-sm">찜 목록</button>
+            <p className="display-name max-xl:text-sm">
               {session.user.user_metadata.displayName}
             </p>
-            <button className="logout" onClick={onLogout}>
+            <button className="logout max-xl:text-sm" onClick={onLogout}>
               로그아웃
             </button>
           </div>
