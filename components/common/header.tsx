@@ -87,6 +87,12 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
     setSession(null);
   };
 
+  const onWishClick = () => {
+    if (session) {
+      router.push("/wishlist");
+    }
+  };
+
   // useEffect
   useEffect(() => {
     setShowFilter(false);
@@ -160,7 +166,9 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
       <div className="right-container flex">
         {session ? (
           <div className="sign-in-container flex">
-            <button className="wish-btn max-xl:text-sm">찜 목록</button>
+            <button className="wish-btn max-xl:text-sm" onClick={onWishClick}>
+              찜 목록
+            </button>
             <p className="display-name max-xl:text-sm">
               {session.user.user_metadata.displayName}
             </p>
