@@ -28,7 +28,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
-  const { isGetUser, getDisplayName } = useAuth();
+  const { getDisplayName, session } = useAuth();
 
   // function
   const onSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -88,7 +88,6 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
 
   useEffect(() => {
     document.addEventListener("click", onClickOutSide);
-    console.log("🚀 ~ Header ~ getDisplayName:", getDisplayName);
     return () => {
       document.removeEventListener("click", onClickOutSide);
     };
@@ -147,8 +146,12 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
 
       {/* right -> 로그인 + 회원가입 버튼 + 찜목록 버튼 */}
       <div className="right-container">
-        {isGetUser ? (
-          <div>{getDisplayName}</div>
+        {session ? (
+          <div>
+            {getDisplayName
+              ? getDisplayName
+              : session.user.user_metadata.displayName}
+          </div>
         ) : (
           <div className="default-container flex">
             <button
