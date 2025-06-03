@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 // service
 import { BookSearch } from "@/services/book";
 // store
@@ -28,7 +29,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const [search, setSearch] = useState("");
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
-  const { getDisplayName, session } = useAuth();
+  const { session, setSession } = useAuth();
 
   // function
   const onSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -73,6 +74,17 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
     ) {
       setShowFilter(false);
     }
+  };
+
+  const onLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.log("로그아웃 실패! : ", error.message);
+      return;
+    }
+
+    router.replace("/");
+    setSession(null);
   };
 
   // useEffect
@@ -145,12 +157,16 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
       </div>
 
       {/* right -> 로그인 + 회원가입 버튼 + 찜목록 버튼 */}
-      <div className="right-container">
+      <div className="right-container flex">
         {session ? (
-          <div>
-            {getDisplayName
-              ? getDisplayName
-              : session.user.user_metadata.displayName}
+          <div className="sign-in-container flex">
+            <p className="wish-btn">찜 목록</p>
+            <p className="display-name">
+              {session.user.user_metadata.displayName}
+            </p>
+            <button className="logout" onClick={onLogout}>
+              로그아웃
+            </button>
           </div>
         ) : (
           <div className="default-container flex">
