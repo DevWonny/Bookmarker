@@ -21,12 +21,18 @@ import "@/styles/components/listItem.scss";
 
 // 좌측 영역 구분 Interface
 type ListType = "rank" | "result" | "wish";
+
 interface ListItemProps {
   type: ListType;
   item: BookItem;
+  isWish?: boolean;
 }
 
-export default function ListItem({ type, item }: ListItemProps) {
+export default function ListItem({
+  type,
+  item,
+  isWish = false,
+}: ListItemProps) {
   const { session } = useAuth();
   const onConvertPrice = (price: string) => {
     const toNumberPrice = parseInt(price);
@@ -41,8 +47,17 @@ export default function ListItem({ type, item }: ListItemProps) {
   const onFetchWishList = async () => {};
 
   const onTest = async (item: BookItem) => {
-    if (session && session.user.id) {
-      await addWishItem(session.user.id, item);
+    console.log("🚀 ~ onTest ~ item:", item);
+    // if (isWish) {
+
+    // }
+    // if (session && session.user.id) {
+    //   await addWishItem(session.user.id, item);
+    // }
+    if (item && item.itemId) {
+      console.log(session.user.id);
+      await removeWishItem(session.user.id, item.itemId);
+      const test: any = await fetchWishList(session.user.id);
     }
   };
 
@@ -51,13 +66,6 @@ export default function ListItem({ type, item }: ListItemProps) {
       {type === "rank" && (
         <div className="rank h-full flex items-center justify-center">
           {item.bestRank}
-        </div>
-      )}
-
-      {type === "wish" && (
-        <div className="wish h-full flex items-center justify-center">
-          <BookmarkOutlinedIcon className="active-mark-icon"></BookmarkOutlinedIcon>
-          {/* <BookmarkBorderOutlinedIcon className="disabled-mark-icon"></BookmarkBorderOutlinedIcon> */}
         </div>
       )}
 
@@ -97,7 +105,7 @@ export default function ListItem({ type, item }: ListItemProps) {
           {onConvertPrice(item.priceStandard)}원
         </p>
         <button className="wish-button text-base" onClick={() => onTest(item)}>
-          찜하기
+          {isWish ? "해제" : "찜하기"}
         </button>
       </div>
     </div>

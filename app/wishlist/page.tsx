@@ -11,6 +11,7 @@ import {
 } from "@/services/wishlist";
 // component
 import ListItem from "@/components/common/listItem";
+import { BookItem } from "@/types/main";
 
 export default () => {
   const [userId, setUserId] = useState(null);
@@ -28,6 +29,12 @@ export default () => {
     const test: any = await fetchWishList(userId);
     setList(test);
   };
+
+  const findBook = (book: BookItem) => {
+    console.log("🚀 ~ findBook ~ list.includes(book):", list.includes(book));
+    return list.includes(book);
+  };
+
   useEffect(() => {
     if (userId) {
       fetchList(userId);
@@ -36,16 +43,18 @@ export default () => {
 
   return (
     <div className="wishlist-warp">
-      {list &&
-        list.length > 0 &&
+      {list && list.length > 0 ? (
         list.map((item) => (
           <ListItem
             type="wish"
             item={item}
+            isWish={findBook(item)}
             key={`wish-list-item-key-${item.itemId}`}
           />
-        ))}
-      {/* <ListItem type="wish"></ListItem> */}
+        ))
+      ) : (
+        <p>찜 목록 내역이 없습니다.</p>
+      )}
     </div>
   );
 };

@@ -29,6 +29,7 @@ export const addWishItem = async (userId: string, bookItem: BookItem) => {
 
 // * Remove Wish Item
 export const removeWishItem = async (userId: string, itemId: string) => {
+  console.log(111)
   const req = await supabase.from('wishlist').delete().match({ user_id: userId, item_id: itemId });
   const { error } = req;
   if (error) {
