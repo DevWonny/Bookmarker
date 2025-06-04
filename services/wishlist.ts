@@ -18,24 +18,19 @@ export const addWishItem = async (userId: string, itemId: string) => {
   // ! 추가 시 데이저 정리 해서 추가  
 
   const req = await supabase.from('wishlist').insert({ user_id: userId, item_id: itemId });
-  const { error, data } = req;
-
+  const { error } = req;
   if (error) {
     console.log('Add Wish Item Error - ', error);
     return;
   }
-
-  console.log("🚀 ~ addWishItem ~ data:", data)
-  return data;
 }
 
 // * Remove Wish Item
 export const removeWishItem = async (userId: string, itemId: string) => {
   const req = await supabase.from('wishlist').delete().match({ user_id: userId, item_id: itemId });
-  const { error, data } = req;
+  const { error } = req;
   if (error) {
     console.log('Remove Wish Item Error - ', error)
     return;
   }
-  console.log("🚀 ~ removeWishItem ~ data :", data)
 }
