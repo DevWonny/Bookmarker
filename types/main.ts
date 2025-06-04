@@ -13,5 +13,8 @@ export interface BookItem extends BannerItem {
   bestDuration: string;
   bestRank: string;
   customerReviewRank: string;
-  categoryName: string
+  categoryName: string;
+  userId?: string;
+  itemId?: string;
+  createdAt?: any;
 }

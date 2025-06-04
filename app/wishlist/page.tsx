@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 // store
 import { useAuth } from "@/stores/auth";
+import { useWishList } from "@/stores/wishlist";
 // service
 import {
   fetchWishList,
@@ -14,6 +15,7 @@ import ListItem from "@/components/common/listItem";
 export default () => {
   const [userId, setUserId] = useState(null);
   const { session } = useAuth();
+  const { list, setList } = useWishList();
 
   // use Effect
   useEffect(() => {
@@ -22,30 +24,27 @@ export default () => {
     }
   }, [session]);
 
+  const fetchList = async (userId: string) => {
+    const test: any = await fetchWishList(userId);
+    setList(test);
+  };
   useEffect(() => {
     if (userId) {
-      fetchWishList(userId);
+      fetchList(userId);
     }
   }, [userId]);
 
-  // function
-  // test
-  const onAddWishItem = async () => {
-    if (userId) {
-      await addWishItem(userId, "testItem2");
-    }
-  };
-
-  const onRemove = async () => {
-    if (userId) {
-      await removeWishItem(userId, "testItem1");
-      fetchWishList(userId);
-    }
-  };
   return (
     <div className="wishlist-warp">
-      <button onClick={onAddWishItem}>Add Test</button>
-      <button onClick={onRemove}>Remove Test</button>
+      {list &&
+        list.length > 0 &&
+        list.map((item) => (
+          <ListItem
+            type="wish"
+            item={item}
+            key={`wish-list-item-key-${item.itemId}`}
+          />
+        ))}
       {/* <ListItem type="wish"></ListItem> */}
     </div>
   );

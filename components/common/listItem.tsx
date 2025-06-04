@@ -2,6 +2,14 @@
 // * 그 외에는 동일
 // type
 import { BookItem } from "@/types/main";
+// store
+import { useAuth } from "@/stores/auth";
+// service
+import {
+  addWishItem,
+  removeWishItem,
+  fetchWishList,
+} from "@/services/wishlist";
 // util
 import { RemoveHyphen, RemoveParentheses } from "@/utils/removeText";
 import dayjs from "dayjs";
@@ -19,6 +27,7 @@ interface ListItemProps {
 }
 
 export default function ListItem({ type, item }: ListItemProps) {
+  const { session } = useAuth();
   const onConvertPrice = (price: string) => {
     const toNumberPrice = parseInt(price);
     return toNumberPrice.toLocaleString();
@@ -27,6 +36,14 @@ export default function ListItem({ type, item }: ListItemProps) {
   // image 태그 지우기
   const removeImgTag = (tag: string): string => {
     return tag.replace(/<img[^>]*>/gi, "");
+  };
+
+  const onFetchWishList = async () => {};
+
+  const onTest = async (item: BookItem) => {
+    if (session && session.user.id) {
+      await addWishItem(session.user.id, item);
+    }
   };
 
   return (
@@ -79,7 +96,9 @@ export default function ListItem({ type, item }: ListItemProps) {
         <p className="price text-base">
           {onConvertPrice(item.priceStandard)}원
         </p>
-        <button className="wish-button text-base">찜하기</button>
+        <button className="wish-button text-base" onClick={() => onTest(item)}>
+          찜하기
+        </button>
       </div>
     </div>
   );
