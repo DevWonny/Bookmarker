@@ -4,6 +4,7 @@
 import { BookItem } from "@/types/main";
 // store
 import { useAuth } from "@/stores/auth";
+import { useWishList } from "@/stores/wishlist";
 // service
 import {
   addWishItem,
@@ -34,6 +35,8 @@ export default function ListItem({
   isWish = false,
 }: ListItemProps) {
   const { session } = useAuth();
+  const { setList } = useWishList();
+  // function
   const onConvertPrice = (price: string) => {
     const toNumberPrice = parseInt(price);
     return toNumberPrice.toLocaleString();
@@ -44,20 +47,15 @@ export default function ListItem({
     return tag.replace(/<img[^>]*>/gi, "");
   };
 
-  const onFetchWishList = async () => {};
-
   const onTest = async (item: BookItem) => {
-    console.log("🚀 ~ onTest ~ item:", item);
-    // if (isWish) {
-
-    // }
-    // if (session && session.user.id) {
-    //   await addWishItem(session.user.id, item);
-    // }
-    if (item && item.itemId) {
-      console.log(session.user.id);
-      await removeWishItem(session.user.id, item.itemId);
-      const test: any = await fetchWishList(session.user.id);
+    if (type === "wish") {
+      if (item && item.itemId) {
+        await removeWishItem(session.user.id, item.itemId);
+        const fetch: any = await fetchWishList(session.user.id);
+        setList(fetch);
+      }
+    } else {
+      await addWishItem(session.user.id, item);
     }
   };
 

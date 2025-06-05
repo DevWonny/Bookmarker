@@ -6,7 +6,10 @@ import { BookItem } from "@/types/main";
 // * fetch Wish List
 export const fetchWishList = async (userId: string) => {
   const res = await supabase.from('wishlist').select('*').eq('user_id', userId);
+
   const { error, data } = res;
+  console.log('fetch!');
+  console.log(data)
   if (error) {
     console.log('Fetch Wish List Error - ', error);
     return;
@@ -19,7 +22,7 @@ export const fetchWishList = async (userId: string) => {
 export const addWishItem = async (userId: string, bookItem: BookItem) => {
   // ! 추가 시 데이저 정리 해서 추가  
   const { author, cover, description, link, priceStandard, publisher, pubDate, title, bestDuration, bestRank, customerReviewRank, categoryName, itemId } = bookItem
-  const req = await supabase.from('wishlist').insert({ user_id: userId, author, cover, description, link, price_standard: priceStandard, publisher, pub_date: pubDate, title, best_duration: bestDuration, best_rank: bestRank, customer_review_rank: customerReviewRank, category_name: categoryName, item_id: itemId });
+  const req = await supabase.from('wishlist').insert({ user_id: userId, author, cover, description, link, price_standard: priceStandard, publisher, pub_date: pubDate, title, best_duration: bestDuration, best_rank: bestRank, customer_review_rank: customerReviewRank, category_name: categoryName, itemId: itemId });
   const { error } = req;
   if (error) {
     console.log('Add Wish Item Error - ', error);
@@ -29,8 +32,7 @@ export const addWishItem = async (userId: string, bookItem: BookItem) => {
 
 // * Remove Wish Item
 export const removeWishItem = async (userId: string, itemId: string) => {
-  console.log(111)
-  const req = await supabase.from('wishlist').delete().match({ user_id: userId, item_id: itemId });
+  const req = await supabase.from('wishlist').delete().match({ user_id: userId, itemId });
   const { error } = req;
   if (error) {
     console.log('Remove Wish Item Error - ', error)
