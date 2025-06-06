@@ -12,6 +12,8 @@ import {
 // component
 import ListItem from "@/components/common/listItem";
 import { BookItem } from "@/types/main";
+// icon
+import ErrorIcon from "@mui/icons-material/Error";
 
 export default () => {
   const [userId, setUserId] = useState(null);
@@ -53,7 +55,10 @@ export default () => {
           />
         ))
       ) : (
-        <p>찜 목록 내역이 없습니다.</p>
+        <div className="empty-list flex h-full w-full flex flex-col items-center justify-center">
+          <ErrorIcon />
+          <p>찜 목록 내역이 없습니다.</p>
+        </div>
       )}
     </div>
   );
