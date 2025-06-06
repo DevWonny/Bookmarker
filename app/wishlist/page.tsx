@@ -12,6 +12,8 @@ import {
 // component
 import ListItem from "@/components/common/listItem";
 import { BookItem } from "@/types/main";
+// style
+import "@/styles/pages/wishlist.scss";
 // icon
 import ErrorIcon from "@mui/icons-material/Error";
 
@@ -44,7 +46,9 @@ export default () => {
   }, [userId]);
 
   return (
-    <div className="wishlist-warp">
+    <div
+      className={`wishlist-warp ${list && list.length > 0 ? "" : "h-screen"}`}
+    >
       {list && list.length > 0 ? (
         list.map((item) => (
           <ListItem
@@ -56,8 +60,8 @@ export default () => {
         ))
       ) : (
         <div className="empty-list flex h-full w-full flex flex-col items-center justify-center">
-          <ErrorIcon />
-          <p>찜 목록 내역이 없습니다.</p>
+          <ErrorIcon className="empty-icon" />
+          <p className="text-2xl font-bold">찜 목록 내역이 없습니다.</p>
         </div>
       )}
     </div>

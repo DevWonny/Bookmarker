@@ -1,0 +1,11 @@
+@import "@/styles/globals.scss";
+
+div.wishlist-warp {
+  div.empty-list {
+    gap: 30px;
+    .empty-icon {
+      width: 6.25rem;
+      height: 6.25rem;
+    }
+  }
+}
