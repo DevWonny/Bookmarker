@@ -22,22 +22,21 @@ export default () => {
   const { session } = useAuth();
   const { list, setList } = useWishList();
 
-  // use Effect
-  useEffect(() => {
-    if (session && session.user) {
-      setUserId(session.user.id);
-    }
-  }, [session]);
-
   const fetchList = async (userId: string) => {
     const test: any = await fetchWishList(userId);
     setList(test);
   };
 
   const findBook = (book: BookItem) => {
-    console.log("🚀 ~ findBook ~ list.includes(book):", list.includes(book));
     return list.includes(book);
   };
+
+  // use Effect
+  useEffect(() => {
+    if (session && session.user) {
+      setUserId(session.user.id);
+    }
+  }, [session]);
 
   useEffect(() => {
     if (userId) {

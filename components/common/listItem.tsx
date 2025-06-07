@@ -34,7 +34,6 @@ export default function ListItem({
   item,
   isWish = false,
 }: ListItemProps) {
-  console.log("🚀 ~ item:", item);
   const { session } = useAuth();
   const { setList } = useWishList();
   // function
@@ -57,6 +56,8 @@ export default function ListItem({
       }
     } else {
       await addWishItem(session.user.id, item);
+      const fetch: any = await fetchWishList(session.user.id);
+      setList(fetch);
     }
   };
 

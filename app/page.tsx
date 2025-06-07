@@ -8,6 +8,9 @@ import SkeletonListItem from "@/components/common/skeletonListItem";
 import BestsellerFilter from "@/components/main/bestsellerFilter";
 // service
 import { BookSearch, BookList } from "@/services/book";
+// store
+import { useWishList } from "@/stores/wishlist";
+import { useAuth } from "@/stores/auth";
 // type
 import { BannerItem, BookItem } from "@/types/main";
 // utils
@@ -18,6 +21,7 @@ import "@/styles/pages/main.scss";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 // swiper style
 import "swiper/css";
+import { fetchWishList } from "@/services/wishlist";
 
 export default () => {
   // state
@@ -29,6 +33,8 @@ export default () => {
   const totalPage = useRef(10);
   const [filterYear, setFilterYear] = useState<string | null>(null);
   const [filterMonth, setFilterMonth] = useState<string | null>(null);
+  const { list, setList } = useWishList();
+  const { session } = useAuth();
 
   const onBannerList = async () => {
     try {
@@ -70,6 +76,16 @@ export default () => {
     }
   };
 
+  // ! 추후 공통 Function 으로 분리
+  const onFetchWishList = async (id: string) => {
+    const fetch: any = await fetchWishList(id);
+    setList(fetch);
+  };
+
+  const findBook = (book: BookItem) => {
+    return list.some((item) => item.itemId === book.itemId);
+  };
+
   useEffect(() => {
     onBannerList();
     onBookList();
@@ -77,6 +93,12 @@ export default () => {
     setFilterYear(() => dayjs().format("YYYY"));
     setFilterMonth(() => dayjs().format("MM"));
   }, []);
+
+  useEffect(() => {
+    if (session && session.user.id) {
+      onFetchWishList(session.user.id);
+    }
+  }, [session]);
 
   useEffect(() => {
     if (curPage === totalPage.current) {
@@ -150,6 +172,7 @@ export default () => {
                 key={`main-book-list-item-${index}`}
                 type="rank"
                 item={item}
+                isWish={findBook(item)}
               />
             ))
           ) : (
