@@ -47,7 +47,7 @@ export default () => {
 
   return (
     <div
-      className={`wishlist-warp ${list && list.length > 0 ? "" : "h-screen"}`}
+      className={`wishlist-wrap ${list && list.length > 0 ? "" : "empty-wrap"}`}
     >
       {list && list.length > 0 ? (
         list.map((item) => (

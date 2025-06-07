@@ -1,6 +1,9 @@
 @import "@/styles/globals.scss";
 
-div.wishlist-warp {
+div.wishlist-wrap {
+  &.empty-wrap {
+    height: calc(100vh - 80px);
+  }
   div.empty-list {
     gap: 30px;
     .empty-icon {
