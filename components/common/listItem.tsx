@@ -35,7 +35,7 @@ export default function ListItem({
   isWish = false,
 }: ListItemProps) {
   const { session } = useAuth();
-  const { setList } = useWishList();
+  const { setList, list } = useWishList();
   // function
   const onConvertPrice = (price: string) => {
     const toNumberPrice = parseInt(price);
@@ -47,17 +47,22 @@ export default function ListItem({
     return tag.replace(/<img[^>]*>/gi, "");
   };
 
-  const onTest = async (item: BookItem) => {
-    if (type === "wish") {
-      if (item && item.itemId) {
-        await removeWishItem(session.user.id, item.itemId);
-        const fetch: any = await fetchWishList(session.user.id);
-        setList(fetch);
-      }
+  // ! 추후 공통 Function 으로 분리
+  const onFetchWishList = async (id: string) => {
+    const fetch: any = await fetchWishList(id);
+    setList(fetch);
+  };
+
+  const onWishButtonClick = async (item: BookItem) => {
+    onFetchWishList(session.user.id);
+
+    if (list.some((listItem) => listItem.itemId === item.itemId)) {
+      await removeWishItem(session.user.id, item.itemId!);
+      onFetchWishList(session.user.id);
     } else {
+      console.log("add");
       await addWishItem(session.user.id, item);
-      const fetch: any = await fetchWishList(session.user.id);
-      setList(fetch);
+      onFetchWishList(session.user.id);
     }
   };
 
@@ -104,7 +109,10 @@ export default function ListItem({
         <p className="price text-base">
           {onConvertPrice(item.priceStandard)}원
         </p>
-        <button className="wish-button text-base" onClick={() => onTest(item)}>
+        <button
+          className="wish-button text-base"
+          onClick={() => onWishButtonClick(item)}
+        >
           {isWish ? "해제" : "찜하기"}
         </button>
       </div>
