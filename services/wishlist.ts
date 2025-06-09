@@ -8,8 +8,6 @@ export const fetchWishList = async (userId: string) => {
   const res = await supabase.from('wishlist').select('*').eq('user_id', userId);
 
   const { error, data } = res;
-  console.log('fetch!');
-  console.log(data)
   if (error) {
     console.log('Fetch Wish List Error - ', error);
     return;
