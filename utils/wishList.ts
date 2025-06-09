@@ -1,17 +1,13 @@
-// store
-import { useWishList } from "@/stores/wishlist";
 // service 
 import { fetchWishList, addWishItem, removeWishItem } from "@/services/wishlist";
 // type
 import { BookItem } from "@/types/main";
 
-const { setList } = useWishList();
-
 // List Fetch
 export const onFetchWishList = async (id: string) => {
   // * id -> user id
   const wishList: any = await fetchWishList(id);
-  setList(wishList);
+  return wishList;
 }
 
 // Add Item

@@ -15,13 +15,13 @@ import { useAuth } from "@/stores/auth";
 import { BannerItem, BookItem } from "@/types/main";
 // utils
 import { RemoveParentheses, RemoveHyphen } from "@/utils/removeText";
+import { onFetchWishList } from "@/utils/wishList";
 // style
 import "@/styles/pages/main.scss";
 // skeleton ui
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 // swiper style
 import "swiper/css";
-import { fetchWishList } from "@/services/wishlist";
 
 export default () => {
   // state
@@ -76,14 +76,11 @@ export default () => {
     }
   };
 
-  // ! 추후 공통 Function 으로 분리
-  const onFetchWishList = async (id: string) => {
-    const fetch: any = await fetchWishList(id);
-    setList(fetch);
-  };
-
   const findBook = (book: BookItem) => {
-    return list.some((item) => item.itemId === book.itemId);
+    // ! 새로 고침 시 표출 제대로 안됨! 확인 필요.
+    if (list.length > 0) {
+      return list.some((item) => item.itemId === book.itemId);
+    }
   };
 
   useEffect(() => {
