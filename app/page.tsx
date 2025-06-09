@@ -15,7 +15,6 @@ import { useAuth } from "@/stores/auth";
 import { BannerItem, BookItem } from "@/types/main";
 // utils
 import { RemoveParentheses, RemoveHyphen } from "@/utils/removeText";
-import { onFetchWishList } from "@/utils/wishList";
 // style
 import "@/styles/pages/main.scss";
 // skeleton ui

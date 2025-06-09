@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 // store
 import { useAuth } from "@/stores/auth";
 import { useWishList } from "@/stores/wishlist";
-// utils
-import { onFetchWishList } from "@/utils/wishList";
+// service
+import { fetchWishList } from "@/services/wishlist";
 // component
 import ListItem from "@/components/common/listItem";
-// type
 import { BookItem } from "@/types/main";
 // style
 import "@/styles/pages/wishlist.scss";
@@ -18,6 +17,11 @@ export default () => {
   const [userId, setUserId] = useState(null);
   const { session } = useAuth();
   const { list, setList } = useWishList();
+
+  const fetchList = async (userId: string) => {
+    const data: any = await fetchWishList(userId);
+    setList(data);
+  };
 
   const findBook = (book: BookItem) => {
     return list.includes(book);
@@ -32,8 +36,7 @@ export default () => {
 
   useEffect(() => {
     if (userId) {
-      const data: any = onFetchWishList(userId);
-      setList(data);
+      fetchList(userId);
     }
   }, [userId]);
 
