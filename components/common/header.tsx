@@ -8,6 +8,7 @@ import { BookSearch } from "@/services/book";
 // store
 import { useBookSearch } from "@/stores/bookSearch";
 import { useAuth } from "@/stores/auth";
+import { useWishList } from "@/stores/wishlist";
 // style
 import "@/styles/components/header.scss";
 
@@ -30,6 +31,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const isSearching = useRef(false);
   const { setKeyword, setBookList } = useBookSearch();
   const { session, setSession } = useAuth();
+  const { list, setList } = useWishList();
 
   // function
   const onSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -84,6 +86,7 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
     }
 
     router.replace("/");
+    setList([]);
     setSession(null);
   };
 
