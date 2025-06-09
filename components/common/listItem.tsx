@@ -14,9 +14,6 @@ import {
 // util
 import { RemoveHyphen, RemoveParentheses } from "@/utils/removeText";
 import dayjs from "dayjs";
-// icon
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 // style
 import "@/styles/components/listItem.scss";
 
@@ -54,15 +51,18 @@ export default function ListItem({
   };
 
   const onWishButtonClick = async (item: BookItem) => {
-    onFetchWishList(session.user.id);
+    // ! 비로그인 상태에서 클릭하면 모달 뜨게 하기. -> 모달 오픈에 대한 관리를 zustand로 전역관리 하기
+    if (session) {
+      onFetchWishList(session.user.id);
 
-    if (list.some((listItem) => listItem.itemId === item.itemId)) {
-      await removeWishItem(session.user.id, item.itemId!);
-      onFetchWishList(session.user.id);
-    } else {
-      console.log("add");
-      await addWishItem(session.user.id, item);
-      onFetchWishList(session.user.id);
+      if (list.some((listItem) => listItem.itemId === item.itemId)) {
+        await removeWishItem(session.user.id, item.itemId!);
+        onFetchWishList(session.user.id);
+      } else {
+        console.log("add");
+        await addWishItem(session.user.id, item);
+        onFetchWishList(session.user.id);
+      }
     }
   };
 

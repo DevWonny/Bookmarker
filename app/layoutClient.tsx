@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 // store
 import { useAuth } from "@/stores/auth";
@@ -19,6 +19,7 @@ export default function LayoutClient({
   const [isSignupClick, setIsSignupClick] = useState(false);
   const [isVisibleTopBtn, setIsVisibleTopBtn] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { session, setSession } = useAuth();
 
   const onModalClose = () => {

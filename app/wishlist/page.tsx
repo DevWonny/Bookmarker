@@ -1,10 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 // store
 import { useAuth } from "@/stores/auth";
 import { useWishList } from "@/stores/wishlist";
 // service
 import { fetchWishList } from "@/services/wishlist";
+import { supabase } from "@/lib/supabase";
 // component
 import ListItem from "@/components/common/listItem";
 import { BookItem } from "@/types/main";
@@ -17,6 +19,7 @@ export default () => {
   const [userId, setUserId] = useState(null);
   const { session } = useAuth();
   const { list, setList } = useWishList();
+  const router = useRouter();
 
   const fetchList = async (userId: string) => {
     const data: any = await fetchWishList(userId);
