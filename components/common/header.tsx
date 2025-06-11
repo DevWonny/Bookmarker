@@ -11,6 +11,8 @@ import { useAuth } from "@/stores/auth";
 import { useWishList } from "@/stores/wishlist";
 // style
 import "@/styles/components/header.scss";
+// Logo icon
+import BookmarksRoundedIcon from "@mui/icons-material/BookmarksRounded";
 
 // interface
 interface HeaderType {
@@ -122,7 +124,8 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
           href="/"
           className="logo flex items-center justify-center text-lg cursor-default"
         >
-          Logo
+          <BookmarksRoundedIcon />
+          BookMarker
         </Link>
         <Link
           href="/bookstoreLocation"
