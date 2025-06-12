@@ -34,8 +34,17 @@ export default () => {
     return list.includes(book);
   };
 
+  const checkSession = async () => {
+    const sessionData = (await supabase.auth.getSession()).data.session;
+    if (!sessionData) {
+      router.replace("/");
+    }
+  };
+
   // use Effect
   useEffect(() => {
+    checkSession();
+
     if (session && session.user) {
       setUserId(session.user.id);
     }
