@@ -12,11 +12,14 @@ import ListItem from "@/components/common/listItem";
 import { BookItem } from "@/types/main";
 // style
 import "@/styles/pages/wishlist.scss";
+// skeleton ui
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 // icon
 import ErrorIcon from "@mui/icons-material/Error";
 
 export default () => {
   const [userId, setUserId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { session } = useAuth();
   const { list, setList } = useWishList();
   const router = useRouter();
@@ -24,6 +27,7 @@ export default () => {
   const fetchList = async (userId: string) => {
     const data: any = await fetchWishList(userId);
     setList(data);
+    setIsLoading(true);
   };
 
   const findBook = (book: BookItem) => {
@@ -43,7 +47,7 @@ export default () => {
     }
   }, [userId]);
 
-  return (
+  return isLoading ? (
     <div
       className={`wishlist-wrap ${list && list.length > 0 ? "" : "empty-wrap"}`}
     >
@@ -63,5 +67,9 @@ export default () => {
         </div>
       )}
     </div>
+  ) : (
+    <SkeletonTheme baseColor="#e6c9ac" highlightColor="#fff8f1">
+      <Skeleton height="100vh" width="100%" style={{ display: "block" }} />
+    </SkeletonTheme>
   );
 };
