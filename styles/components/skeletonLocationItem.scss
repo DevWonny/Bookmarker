@@ -1,0 +1,16 @@
+@import "@/styles/globals.scss";
+
+div.skeleton-location-item {
+  width: 25rem;
+  height: 9.5rem;
+  border-radius: none;
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+@media (max-width: 80rem) {
+  div.location-item-container {
+    width: 100%;
+  }
+}

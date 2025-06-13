@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 // component
 import AddressFilter from "@/components/bookstoreLocation/addressFilter";
 import LocationItem from "@/components/bookstoreLocation/locationItem";
-
+import SkeletonLocationItem from "@/components/bookstoreLocation/skeletonLocationItem";
 // service
 import { AddressTest } from "@/services/address";
 // Map Initialize Date
@@ -158,15 +158,18 @@ export default () => {
       <div className="map-container" ref={MapRef}></div>
 
       <div className="location-list-container">
-        {place.length > 0 &&
-          place.map((data: any) => (
-            <LocationItem
-              key={`bookstore-location-item-${data.id}`}
-              item={data}
-              onOver={handlerMouseOver}
-              onLeave={handleMouseLeave}
-            />
-          ))}
+        {place.length > 0
+          ? place.map((data: any) => (
+              <LocationItem
+                key={`bookstore-location-item-${data.id}`}
+                item={data}
+                onOver={handlerMouseOver}
+                onLeave={handleMouseLeave}
+              />
+            ))
+          : Array.from({ length: 5 }, (_, index) => (
+              <SkeletonLocationItem key={`skeleton-location-item-${index}`} />
+            ))}
       </div>
     </div>
   );
