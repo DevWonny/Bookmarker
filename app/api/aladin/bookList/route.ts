@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { parseStringPromise } from 'xml2js';
 import axios from "axios";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   const query = new URL(req.url).searchParams.toString();
   const url = process.env.NEXT_PUBLIC_ALADIN_URL;
 
