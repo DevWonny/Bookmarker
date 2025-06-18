@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const key = process.env.NEXT_PUBLIC_ALADIN_KEY;
+// ! Local
+// const key = process.env.NEXT_PUBLIC_ALADIN_KEY;
+// ! Deployment
+const key = process.env.NEXT_PUBLIC_ALADIN_DEPLOYMENT_KEY;
 // 책 검색
 export const BookSearch = async (query: string, queryType: string) => {
   try {
