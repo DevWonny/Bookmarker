@@ -1,5 +1,9 @@
 # Bookmarker 프로젝트
 
+## 배포 페이지
+
+- https://bookmarker-liard.vercel.app/
+
 ## 기간
 
 - 프로젝트 구상 시작 : 25년 4월 8일
