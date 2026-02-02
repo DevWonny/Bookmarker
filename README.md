@@ -2,7 +2,7 @@
 
 ## 배포 페이지
 
-- https://bookmarker-liard.vercel.app/
+- https://projectbookmarker.netlify.app/
 
 ## 기간
 
