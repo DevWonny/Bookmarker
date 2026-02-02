@@ -44,7 +44,6 @@ export default () => {
   // use Effect
   useEffect(() => {
     checkSession();
-
     if (session && session.user) {
       setUserId(session.user.id);
     }

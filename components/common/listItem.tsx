@@ -54,8 +54,8 @@ export default function ListItem({
     // ! 비로그인 상태에서 클릭하면 모달 뜨게 하기. -> 모달 오픈에 대한 관리를 zustand로 전역관리 하기
     if (session) {
       onFetchWishList(session.user.id);
-
       if (list.some((listItem) => listItem.itemId === item.itemId)) {
+        console.log(item.itemId);
         await removeWishItem(session.user.id, item.itemId!);
         onFetchWishList(session.user.id);
       } else {
@@ -87,9 +87,9 @@ export default function ListItem({
           {RemoveHyphen(item.title)}
         </h1>
         <p className="book-publish text-sm font-medium">{`${RemoveParentheses(
-          item.author
+          item.author,
         )} | ${item.publisher} | ${dayjs(item.pubDate).format(
-          "YYYY-MM-DD"
+          "YYYY-MM-DD",
         )}`}</p>
 
         {type === "result" ? (

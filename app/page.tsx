@@ -79,11 +79,16 @@ export default () => {
   // ! 추후 공통 Function 으로 분리
   const onFetchWishList = async (id: string) => {
     const fetch: any = await fetchWishList(id);
+    if (!fetch) {
+      return;
+    }
     setList(fetch);
   };
 
   const findBook = (book: BookItem) => {
-    return list.some((item) => item.itemId === book.itemId);
+    if (list && list.length > 0) {
+      return list.some((item) => item.itemId === book.itemId);
+    }
   };
 
   useEffect(() => {
@@ -95,6 +100,7 @@ export default () => {
   }, []);
 
   useEffect(() => {
+    console.log("🚀 ~ session:", session);
     if (session && session.user.id) {
       onFetchWishList(session.user.id);
     }
@@ -115,7 +121,7 @@ export default () => {
           setCurPage((prev) => prev && prev + 1);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     if (observeRef.current) observe.observe(observeRef.current);
