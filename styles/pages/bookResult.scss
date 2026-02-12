@@ -4,13 +4,17 @@ div.book-result-wrap {
   div.warning-box {
     width: fit-content;
     height: fit-content;
-    gap: 2.5rem;
+    gap: 1.5rem;
 
     // * 임시로 아이콘 설정
     div.warning-icon {
       width: 6.25rem;
       height: 6.25rem;
-      background-color: $point-color;
+      .icon {
+        width: 100%;
+        height: 100%;
+        color: $point-color;
+      }
     }
 
     p.warning-text {
