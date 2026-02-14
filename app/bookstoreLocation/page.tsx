@@ -85,7 +85,7 @@ export default () => {
       (data: any[], status: string) => {
         if (status === window.kakao.maps.services.Status.OK) {
           const placeArray = data.sort(
-            (prev, next) => prev.distance - next.distance
+            (prev, next) => prev.distance - next.distance,
           );
           setPlace(placeArray);
           data.forEach((place: any) => {
@@ -100,14 +100,14 @@ export default () => {
           setMarkers(newMarkers);
         }
       },
-      { location: center, radius }
+      { location: center, radius },
     );
 
     // 유저 위치
     const markerPosition = new window.kakao.maps.LatLng(initLat, initLng);
-    const imageSrc =
-      "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png"; // 원하는 색상의 마커 이미지
-    const imageSize = new window.kakao.maps.Size(24, 35); // 이미지 크기
+
+    const imageSrc = "/user_location.png"; // 원하는 색상의 마커 이미지
+    const imageSize = new window.kakao.maps.Size(30, 30); // 이미지 크기
     const markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
     const userMarker = new window.kakao.maps.Marker({
       position: markerPosition,
@@ -122,7 +122,7 @@ export default () => {
     const findPlace = place.find((item) => item.id === id);
     if (marker && map && findPlace && infoWindowRef.current) {
       infoWindowRef.current.setContent(
-        `<div style="padding : 5px; font-size : 8px;">${findPlace.place_name}</div>`
+        `<div style="padding : 5px; font-size : 8px;">${findPlace.place_name}</div>`,
       );
 
       infoWindowRef.current.open(map, marker);
