@@ -11,6 +11,7 @@ import { useAuth } from "@/stores/auth";
 import { useWishList } from "@/stores/wishlist";
 // style
 import "@/styles/components/header.scss";
+import { ChevronDown } from "lucide-react";
 // Logo icon
 import BookmarksRoundedIcon from "@mui/icons-material/BookmarksRounded";
 
@@ -25,12 +26,13 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
   const pathname = usePathname();
   // router
   const router = useRouter();
+  const searchFilterContainerRef = useRef<HTMLDivElement>(null);
+  const isSearching = useRef(false);
   // state
   const [filter, setFilter] = useState("title");
   const [showFilter, setShowFilter] = useState(false);
-  const searchFilterContainerRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState("");
-  const isSearching = useRef(false);
+  const [isSearchTypeClick, setIsSearchTypeClick] = useState(false);
   const { setKeyword, setBookList } = useBookSearch();
   const { session, setSession } = useAuth();
   const { list, setList } = useWishList();
@@ -59,6 +61,14 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
       } else {
         return;
       }
+    }
+  };
+
+  const onSearchTypeClick = () => {
+    if (isSearchTypeClick) {
+      setIsSearchTypeClick(false);
+    } else {
+      setIsSearchTypeClick(true);
     }
   };
 
@@ -143,11 +153,18 @@ export default function Header({ onLoginClick, onSignupClick }: HeaderType) {
           >
             <button
               type="button"
-              onClick={() =>
-                showFilter ? setShowFilter(false) : setShowFilter(true)
-              }
+              className="search-type-button flex items-center justify-center gap-[10px]"
+              onClick={() => {
+                showFilter ? setShowFilter(false) : setShowFilter(true);
+                onSearchTypeClick();
+              }}
             >
               {filter === "title" ? "제목" : "저자"}
+              <ChevronDown
+                width={20}
+                height={20}
+                className={`${isSearchTypeClick && "is-rotate"}`}
+              />
             </button>
 
             {showFilter && (

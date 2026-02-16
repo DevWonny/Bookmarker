@@ -30,6 +30,15 @@ div.header-container {
       border-radius: 8px;
       height: 3.125rem;
       max-width: 43.75rem;
+      button.search-type-button {
+        svg {
+          transition-duration: 0.3s;
+          &.is-rotate {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
       div.search-filter-container {
         // width: 150px;
         width: 9.375rem;
